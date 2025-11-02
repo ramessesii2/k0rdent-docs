@@ -5125,8 +5125,9 @@ cat<span class="w"> </span>&gt;regional-cluster.yaml<span class="w"> </span><spa
 <p>Replace this line:
   <div class="highlight"><pre><span></span><code><span class="nt">k0rdent.mirantis.com/kof-storage-secrets</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
 </code></pre></div>
-  with this line:
-  <div class="highlight"><pre><span></span><code><span class="nt">k0rdent.mirantis.com/istio-role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">child</span>
+  with:
+  <div class="highlight"><pre><span></span><code><span class="nt">k0rdent.mirantis.com/istio-role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">member</span>
+<span class="nt">k0rdent.mirantis.com/istio-gateway</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
 </code></pre></div>
   Note that <code>child</code> is not a typo
   and the <code>kof-</code> prefix is not missing in <code>istio-role</code>.
@@ -5345,6 +5346,13 @@ cat<span class="w"> </span>&gt;child-cluster.yaml<span class="w"> </span><span c
 with this line:
 <div class="highlight"><pre><span></span><code><span class="nt">k0rdent.mirantis.com/istio-role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">child</span>
 </code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+There is no need to create a gateway in the child cluster
+using the <code>k0rdent.mirantis.com/istio-gateway: "true"</code> label.
+The child cluster uses the gateway in the regional cluster to <a href="../kof-storing/">store KOF data</a>.</p>
+</div>
 </li>
 <li>
 <p>This <code>ClusterDeployment</code> uses propagation of its <code>.metadata.labels</code>
@@ -5395,6 +5403,7 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 </code></pre></div></p>
 </li>
 </ol>
+<p>Now that you have installed KOF, please <a href="../kof-verification/">verify it</a>.</p>
 
 
 
