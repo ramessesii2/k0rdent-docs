@@ -16,7 +16,7 @@
         <link rel="prev" href="../kof-architecture/">
       
       
-        <link rel="next" href="../kof-upgrade/">
+        <link rel="next" href="../kof-kcm-region/">
       
       
       <link rel="icon" href="../../../img/k0rdent-logo-mark-inverted.svg">
@@ -2637,6 +2637,8 @@
       
         
       
+        
+      
     
     
     
@@ -2821,6 +2823,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kof-kcm-region/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KCM Region With KOF
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4998,6 +5021,11 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </
 </li>
 </ol>
 <h2 id="regional-cluster">Regional Cluster<a class="headerlink" href="#regional-cluster" title="Permanent link">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="kcm-region.md">KCM Region With KOF</a> guide on top of the steps below.</p>
+</div>
 <p>To install KOF on the regional cluster,
 look through the default values of the <a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-storage/values.yaml">kof-storage</a> chart,
 and apply this example for AWS, or use it as a reference:</p>
@@ -5234,6 +5262,11 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 </li>
 </ol>
 <h2 id="child-cluster">Child Cluster<a class="headerlink" href="#child-cluster" title="Permanent link">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="kcm-region.md">KCM Region With KOF</a> guide on top of the steps below.</p>
+</div>
 <p>To install KOF on the actual cluster to be monitored,
 look through the default values of the <a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-operators/values.yaml">kof-operators</a>
 and <a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-collectors/values.yaml">kof-collectors</a> charts,
