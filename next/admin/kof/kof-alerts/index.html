@@ -2854,15 +2854,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#alertmanager-demo" class="md-nav__link">
     <span class="md-ellipsis">
       Alertmanager Demo
@@ -3001,11 +2992,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../kof-limits/" class="md-nav__link">
+      <a href="../kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -4647,15 +4638,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#alertmanager-demo" class="md-nav__link">
     <span class="md-ellipsis">
       Alertmanager Demo
@@ -4768,7 +4750,6 @@
 
 
 <h1 id="kof-alerts">KOF Alerts<a class="headerlink" href="#kof-alerts" title="Permanent link">#</a></h1>
-<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">#</a></h2>
 <p>At this point you have metrics collected and visualized. It is important to check them manually,
 but it is even better to <strong>automate detection and notification about the issues found in the data.</strong></p>
 <p>We believe the rules should be configured using YAML IaC (Infrastructure as Code),
@@ -5019,8 +5000,7 @@ Note the <code>cluster!~"^cluster1$|^cluster10$"</code> filters and the default 
 <p>Alerting rules are mounted to Promxy in the management cluster as <code>/etc/promxy/rules</code>.</p>
 </li>
 <li>
-<p>Recording rules are passed via <code>MultiClusterService</code> (or <code>ClusterProfile</code> for <code>istio</code> case)
-    to each regional cluster where <code>kof-storage</code> chart renders them to <code>VMRules</code>.</p>
+<p>Recording rules are passed via <code>MultiClusterService</code> to each regional cluster where <code>kof-storage</code> chart renders them to <code>VMRules</code>.</p>
 </li>
 </ul>
 <h2 id="mothership-recording-rules">Mothership recording rules<a class="headerlink" href="#mothership-recording-rules" title="Permanent link">#</a></h2>

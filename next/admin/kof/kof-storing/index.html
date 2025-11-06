@@ -2821,6 +2821,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#storage-class-requirements-for-victoriametrics-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Class Requirements for VictoriaMetrics Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#from-child-and-regional" class="md-nav__link">
     <span class="md-ellipsis">
       From Child and Regional
@@ -2965,11 +2974,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../kof-limits/" class="md-nav__link">
+      <a href="../kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -4620,6 +4629,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#storage-class-requirements-for-victoriametrics-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Class Requirements for VictoriaMetrics Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#from-child-and-regional" class="md-nav__link">
     <span class="md-ellipsis">
       From Child and Regional
@@ -4704,6 +4722,17 @@
     Management cluster-&gt;&gt;Management cluster: KOF data of the&lt;br&gt;management cluster&lt;br&gt;can be stored in:&lt;br&gt;&lt;br&gt;the same management cluster,
     Management cluster-&gt;&gt;Regional cluster: the regional cluster,
     Management cluster-&gt;&gt;Third-party storage: a third-party storage,&lt;br&gt;e.g. AWS CloudWatch.</code></pre>
+<h2 id="storage-class-requirements-for-victoriametrics-cluster">Storage Class Requirements for VictoriaMetrics Cluster<a class="headerlink" href="#storage-class-requirements-for-victoriametrics-cluster" title="Permanent link">#</a></h2>
+<p>When deploying VictoriaMetrics Cluster (used by KOF for metrics storage), consider the following Kubernetes storage class requirements:</p>
+<ul>
+<li><strong>ReadWriteMany:</strong> Not required. Each <code>vmstorage</code> pod uses its own PersistentVolumeClaim (PVC) and does not share volumes with other pods. A <code>ReadWriteOnce</code> access mode is sufficient and recommended for most environments.</li>
+<li><strong>Reclaim Policy:</strong> The default <code>Delete</code> policy is typically used, but you may choose <code>Retain</code> if you want to preserve data after PVC deletion for manual recovery.</li>
+<li><strong>Volume Expansion:</strong> Enabling volume expansion is recommended. VictoriaMetrics can benefit from expanding storage as your data grows, and resizing PVCs is supported by most modern storage classes.</li>
+<li><strong>Required Space:</strong> Storage requirements depend on your metrics volume, retention period, and replication factor. As a starting point, allocate at least 10–50 GiB per <code>vmstorage</code> pod for small clusters, and plan for growth based on actual ingestion rates and retention settings.</li>
+<li><strong>Volume Binding Mode:</strong> <code>WaitForFirstConsumer</code> is recommended for better pod scheduling and to ensure volumes are provisioned in the correct availability zone or node pool.</li>
+</ul>
+<p>For more details, see the <a href="https://docs.victoriametrics.com/victoriametrics/cluster-victoriametrics/#cluster-resizing-and-scalability">VictoriaMetrics Cluster documentation</a>.</p>
+<p>See also: <a href="../kof-retention/">KOF Retention</a> for details on configuring retention periods and replication factors for VictoriaMetrics and VictoriaLogs.</p>
 <h2 id="from-child-and-regional">From Child and Regional<a class="headerlink" href="#from-child-and-regional" title="Permanent link">#</a></h2>
 <p>KOF data collected from the child and regional clusters is routed out-of-the box.
 No additional steps are required here.</p>
@@ -4764,11 +4793,11 @@ No additional steps are required here.</p>
 <p>Install the <code>kof-storage</code> and <code>kof-collectors</code> charts to the management cluster:
     <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--reset-values<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-storage<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-f<span class="w"> </span>storage-values.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-storage<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.4.0
+<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-storage<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.5.0
 
 helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--reset-values<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-collectors<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-f<span class="w"> </span>collectors-values.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.4.0
+<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.5.0
 </code></pre></div></p>
 </li>
 </ol>
@@ -4866,7 +4895,7 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </
 <p>Install the <code>kof-collectors</code> chart to the management cluster:
     <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--reset-values<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-collectors<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-f<span class="w"> </span>collectors-values.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.4.0
+<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.5.0
 </code></pre></div></p>
 </li>
 </ol>
@@ -4922,7 +4951,7 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </
 <p>Install the <code>kof-collectors</code> chart to the management cluster:
     <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--reset-values<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-collectors<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-f<span class="w"> </span>collectors-values.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.4.0
+<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.5.0
 </code></pre></div></p>
 </li>
 </ol>
@@ -5005,7 +5034,7 @@ AWS_SECRET_ACCESS_KEY=REDACTED
 <p>Install the <code>kof-collectors</code> chart to the management cluster:
     <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--reset-values<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-collectors<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-f<span class="w"> </span>collectors-values.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.4.0
+<span class="w">  </span>oci://ghcr.io/k0rdent/kof/charts/kof-collectors<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.5.0
 </code></pre></div></p>
 </li>
 <li>
@@ -5028,7 +5057,6 @@ AWS_SECRET_ACCESS_KEY=REDACTED
 </code></pre></div></p>
 </li>
 </ol>
-<p>See also: <a href="../kof-retention/">KOF Retention</a> for details on configuring retention periods and replication factors for VictoriaMetrics and VictoriaLogs.</p>
 
 
 

@@ -2871,11 +2871,11 @@
   
   
     <li class="md-nav__item">
-      <a href="kof-limits/" class="md-nav__link">
+      <a href="kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -4646,8 +4646,8 @@
 <h1 id="k0rdent-observability-finops-kof">k0rdent Observability &amp; FinOps (KOF)<a class="headerlink" href="#k0rdent-observability-finops-kof" title="Permanent link">#</a></h1>
 <p>Running multiple clusters means you end up wrestling with half a dozen monitoring and cost tools, all with their own configs and upgrade headaches. k0rdent Observability &amp; FinOps (KOF) saves you from duct-taping that stack together by bundling metrics, logs, traces, and cost tracking into one setup. It's built to roll out the same way everywhere, so you don’t have to reinvent the wheel every time you spin up a new cluster.</p>
 <h2 id="kof-makes-sure-every-cluster-is-observable-and-accountable-for-cost">KOF makes sure every cluster is observable and accountable for cost<a class="headerlink" href="#kof-makes-sure-every-cluster-is-observable-and-accountable-for-cost" title="Permanent link">#</a></h2>
-<p>k0rdent estates can be large. They consist of a management cluster, potentially running many child (workload) clusters, often spread across multiple datacenters, regions, and clouds. In sthese kinds of environments, you need to both observe what clusters and workloads are doing (using metrics, logs, traces) and be accountable for what they cost (using allocation and trends).  </p>
-<p>KOF gives k0rdent platform engineering teams the ability to guarantee that observability and cost management are deployed with every cluster they create, and then keep them consistent and automatically lifecycle-managed. </p>
+<p>k0rdent estates can be large. They consist of a management cluster, potentially running many child (workload) clusters, often spread across multiple datacenters, regions, and clouds. In sthese kinds of environments, you need to both observe what clusters and workloads are doing (using metrics, logs, traces) and be accountable for what they cost (using allocation and trends).</p>
+<p>KOF gives k0rdent platform engineering teams the ability to guarantee that observability and cost management are deployed with every cluster they create, and then keep them consistent and automatically lifecycle-managed.</p>
 <h2 id="without-kof-you-would-be-forced-to-integrate-and-maintain-multiple-systems">Without KOF you would be forced to integrate and maintain multiple systems<a class="headerlink" href="#without-kof-you-would-be-forced-to-integrate-and-maintain-multiple-systems" title="Permanent link">#</a></h2>
 <p>KOF is optional, but if you were to build this yourself, you would need to select, integrate, and maintain separate systems for metrics, logs, tracing, dashboards, and cost visibility. At scale, this arrangement introduces persistent difficulties:</p>
 <ul>
@@ -4658,7 +4658,7 @@
 <p><strong>Cross-cluster aggregation.</strong> To query estate-wide, you need to build federation or remote-write topologies. These can work, but are fragile and add operational overhead. (See <a href="https://prometheus.io/docs/prometheus/latest/federation/">Prometheus federation</a>.)</p>
 </li>
 <li>
-<p><strong>Retention and placement.</strong> You need to plan where long-term metrics and logs live (per-cluster, regional, or dedicated) and engineer routing, storage, and query paths. </p>
+<p><strong>Retention and placement.</strong> You need to plan where long-term metrics and logs live (per-cluster, regional, or dedicated) and engineer routing, storage, and query paths.</p>
 </li>
 <li>
 <p><strong>Access, identity, and network.</strong> SSO, RBAC, mTLS, and inter-cluster routing must be implemented and maintained consistently across the estate.</p>
@@ -4668,24 +4668,24 @@
 <h2 id="kof-delivers-unified-observability-and-cost-management-across-the-estate">KOF delivers unified observability and cost management across the estate<a class="headerlink" href="#kof-delivers-unified-observability-and-cost-management-across-the-estate" title="Permanent link">#</a></h2>
 <p>By packaging observability and FinOps as a single subsystem, KOF connects operational signals and cost signals:</p>
 <ul>
-<li><strong>Estate-wide visibility.</strong> Every cluster participates, and data is aggregated centrally.  </li>
-<li><strong>Actionable costs.</strong> Workload and namespace spend is visible in the same dashboards as performance indicators.  </li>
-<li><strong>Standardized retention.</strong> Documented options define where data lives and how long it is kept.  </li>
-<li><strong>Lifecycle management.</strong> KOF is delivered as charts and operators, which can be consistently deployed and upgraded across the estate.  </li>
+<li><strong>Estate-wide visibility.</strong> Every cluster participates, and data is aggregated centrally.</li>
+<li><strong>Actionable costs.</strong> Workload and namespace spend is visible in the same dashboards as performance indicators.</li>
+<li><strong>Standardized retention.</strong> Documented options define where data lives and how long it is kept.</li>
+<li><strong>Lifecycle management.</strong> KOF is delivered as charts and operators, which can be consistently deployed and upgraded across the estate.</li>
 <li><strong>Compliance and audit.</strong> Central policy ensures retention, RBAC, and secure transport are enforced everywhere.</li>
 </ul>
 <p>Performance issues and cost spikes usually come from the same workloads, so you can't separate one from the other. When observability data and cost data live in the same place, it’s easier to spot the cause and fix both at once.</p>
 <h2 id="kof-consists-of-well-established-open-source-components-wired-for-multi-cluster-use">KOF consists of well-established open source components wired for multi-cluster use<a class="headerlink" href="#kof-consists-of-well-established-open-source-components-wired-for-multi-cluster-use" title="Permanent link">#</a></h2>
 <ul>
-<li><strong>Metrics:</strong> <a href="https://docs.victoriametrics.com/">VictoriaMetrics</a> with vmcluster and vmauth.  </li>
-<li><strong>Logs:</strong> <a href="https://docs.victoriametrics.com/victorialogs/">VictoriaLogs</a>.  </li>
-<li><strong>Tracing:</strong> <a href="https://www.jaegertracing.io/">Jaeger</a> with <a href="https://opentelemetry.io/">OpenTelemetry</a>.  </li>
-<li><strong>Cost:</strong> <a href="https://opencost.io/">OpenCost</a>.  </li>
-<li><strong>Dashboards:</strong> Grafana managed by grafana-operator.  </li>
-<li><strong>Aggregation:</strong> <a href="https://github.com/jacksontj/promxy">Promxy</a> for Prometheus-compatible fan-out.  </li>
-<li><strong>Control:</strong> kof-operators for lifecycle and configuration.  </li>
+<li><strong>Metrics:</strong> <a href="https://docs.victoriametrics.com/">VictoriaMetrics</a> with vmcluster and vmauth.</li>
+<li><strong>Logs:</strong> <a href="https://docs.victoriametrics.com/victorialogs/">VictoriaLogs</a>.</li>
+<li><strong>Tracing:</strong> <a href="https://www.jaegertracing.io/">Jaeger</a> with <a href="https://opentelemetry.io/">OpenTelemetry</a>.</li>
+<li><strong>Cost:</strong> <a href="https://opencost.io/">OpenCost</a>.</li>
+<li><strong>Dashboards:</strong> Grafana managed by grafana-operator.</li>
+<li><strong>Aggregation:</strong> <a href="https://github.com/jacksontj/promxy">Promxy</a> for Prometheus-compatible fan-out.</li>
+<li><strong>Control:</strong> kof-operators for lifecycle and configuration.</li>
 </ul>
-<p>KOF is deployed through Helm charts and MultiClusterServices: <code>kof-operators</code>, <code>kof-mothership</code>, <code>kof-storage</code>, <code>kof-collectors</code>, with optional <code>kof-istio</code>, plus per-role services such as <code>kof-child</code> and <code>kof-regional</code>. (See <a href="https://docs.k0rdent.io/latest/admin/kof/kof-architecture/">KOF architecture</a>.)</p>
+<p>KOF is deployed through Helm charts and MultiClusterServices: <code>kof-operators</code>, <code>kof-mothership</code>, <code>kof-storage</code>, <code>kof-collectors</code>, plus per-role services such as <code>kof-child</code> and <code>kof-regional</code>. (See <a href="https://docs.k0rdent.io/latest/admin/kof/kof-architecture/">KOF architecture</a>.)</p>
 <h2 id="kof-in-action-a-day-in-the-life-and-a-sudden-cost-spike">KOF in Action: A Day in the Life (and A Sudden Cost Spike)<a class="headerlink" href="#kof-in-action-a-day-in-the-life-and-a-sudden-cost-spike" title="Permanent link">#</a></h2>
 <p>It’s Monday morning. Finance notices that last week’s cloud bill is <strong>20% higher than forecast</strong>. The CFO wants answers before the leadership meeting tomorrow.</p>
 <p>Without KOF, this would trigger days of Slack threads and finger-pointing. With KOF, here’s what happens instead:</p>
@@ -4729,20 +4729,20 @@
 <p><strong>Management cluster.</strong> Runs Grafana, promxy, operators, and policy. It may also run VictoriaMetrics for its own telemetry and alert evaluation via the <code>kof-mothership</code> chart.</p>
 </li>
 <li>
-<p><strong>Storage and aggregation.</strong> The main VictoriaMetrics, VictoriaLogs, and Jaeger stack can run in:  </p>
+<p><strong>Storage and aggregation.</strong> The main VictoriaMetrics, VictoriaLogs, and Jaeger stack can run in:</p>
 </li>
-<li>the management cluster (for management data, with Grafana and VM provided by <code>kof-mothership</code>),  </li>
-<li>a regional KOF deployment (collecting from child clusters in that region), or  </li>
-<li>a third-party service for selected streams (for example, logs exported to AWS CloudWatch).<br />
+<li>the management cluster (for management data, with Grafana and VM provided by <code>kof-mothership</code>),</li>
+<li>a regional KOF deployment (collecting from child clusters in that region), or</li>
+<li>a third-party service for selected streams (for example, logs exported to AWS CloudWatch).
   See: <a href="https://docs.k0rdent.io/latest/admin/kof/kof-storing/">Storing KOF data</a>.</li>
 </ul>
 <p>Data flows from child clusters into the chosen storage or aggregation point. On the management cluster, promxy and Grafana provide the consolidated UI.</p>
 <h2 id="kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations">KOF can be extended with your own dashboards, pipelines, and destinations<a class="headerlink" href="#kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations" title="Permanent link">#</a></h2>
 <p>KOF is fully functional out of the box, but you can also add additional capabilities through extensions.</p>
 <ul>
-<li><strong>Dashboards and alerts.</strong> Add Grafana dashboards and VMRules in Git; k0rdent <code>MultiClusterService</code> distributes them consistently.  </li>
-<li><strong>Collector pipelines.</strong> Extend OpenTelemetry collectors with custom receivers, processors, or exporters.  </li>
-<li><strong>External destinations.</strong> Route specific streams to third-party systems (recipes are included for CloudWatch and others).  </li>
+<li><strong>Dashboards and alerts.</strong> Add Grafana dashboards and VMRules in Git; k0rdent <code>MultiClusterService</code> distributes them consistently.</li>
+<li><strong>Collector pipelines.</strong> Extend OpenTelemetry collectors with custom receivers, processors, or exporters.</li>
+<li><strong>External destinations.</strong> Route specific streams to third-party systems (recipes are included for CloudWatch and others).</li>
 </ul>
 <p>All extensions are managed through the same GitOps lifecycle as the rest of the platform.</p>
 <h2 id="managing-kof-as-code">Managing KOF as Code<a class="headerlink" href="#managing-kof-as-code" title="Permanent link">#</a></h2>
@@ -4831,14 +4831,14 @@
 <li><a href="kof-alerts/">KOF Alerts</a></li>
 <li><a href="kof-tracing/">KOF Tracing</a></li>
 <li><a href="kof-retention/">Retention and Replication </a></li>
-<li><a href="kof-limits/">Limits</a></li>
+<li><a href="kof-resources/">Resources Requirements</a></li>
 <li><a href="kof-scaling/">Scaling KOF</a></li>
 <li><a href="kof-maintainence/">Maintaining KOF</a></li>
 <li><a href="kof-upgrade/">Upgrading KOF</a></li>
 <li><a href="kof-faq/">FAQ</a></li>
 </ul>
 <p>Once you have KOF up and running,
-check <a href="https://github.com/k0rdent/kof/tree/v1.4.0/docs">k0rdent/kof/docs</a>
+check <a href="https://github.com/k0rdent/kof/tree/v1.5.0/docs">k0rdent/kof/docs</a>
 for advanced guides.</p>
 
 

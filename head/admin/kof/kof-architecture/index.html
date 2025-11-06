@@ -2792,15 +2792,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kof-istio" class="md-nav__link">
-    <span class="md-ellipsis">
-      kof-istio
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#kof-storage" class="md-nav__link">
     <span class="md-ellipsis">
       kof-storage
@@ -3058,11 +3049,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../kof-limits/" class="md-nav__link">
+      <a href="../kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -4768,15 +4759,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#kof-istio" class="md-nav__link">
-    <span class="md-ellipsis">
-      kof-istio
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#kof-storage" class="md-nav__link">
     <span class="md-ellipsis">
       kof-storage
@@ -4927,10 +4909,7 @@ To update the diagram:
     opencost
     opentelemetry-kube-stack
 
-  Either kof-istio
-    Certificates
-    ClusterProfiles
-  Or kof-regional and kof-child
+  kof-regional and kof-child
     MultiClusterServices
 
 Cloud 1..N
@@ -4956,16 +4935,9 @@ Cloud 1..N
 
       cert-manager
       ingress-nginx
-      istio/gateway
-
-      kof-istio chart
-        cert-manager-istio-csr
-        istio/base
-        istiod
 
     <b>Child Cluster 1</b>
       cert-manager
-      Optional kof-istio
 
       kof-operators chart
         Disabled grafana-operator
@@ -5030,16 +5002,7 @@ Cloud 1..N
     </div>
   </div>
   <div class="o">
-    Either kof-istio
-    <div class="o">
-      Certificates
-    </div>
-    <div class="o">
-      ClusterProfiles
-    </div>
-  </div>
-  <div class="o">
-    Or kof-regional and kof-child
+    kof-regional and kof-child
     <div class="o">
       MultiClusterServices
     </div>
@@ -5099,29 +5062,11 @@ Cloud 1..N
       <div class="o">
         ingress-nginx
       </div>
-      <div class="o">
-        istio/gateway
-      </div>
-      <div class="o">
-        kof-istio chart
-        <div class="o">
-          cert-manager-istio-csr
-        </div>
-        <div class="o">
-          istio/base
-        </div>
-        <div class="o">
-          istiod
-        </div>
-      </div>
     </div>
     <div class="o">
       <b>Child Cluster 1</b>
       <div class="o">
         cert-manager
-      </div>
-      <div class="o">
-        Optional kof-istio
       </div>
       <div class="o">
         kof-operators chart
@@ -5175,23 +5120,19 @@ Cloud 1..N
 <li><a href="https://projectsveltos.github.io/sveltos/">Sveltos</a> dashboard, automatic secret distribution</li>
 <li><a href="https://dexidp.io/">Dex</a> SSO <a href="https://github.com/dexidp/helm-charts/tree/master/charts/dex">chart</a></li>
 <li><a href="https://github.com/k0rdent">k0rdent</a> service templates used by <code>kof-regional</code> and <code>kof-child</code> charts</li>
-<li><a href="https://github.com/k0rdent/kof/tree/v1.4.0/charts/kof-dashboards">kof-dashboards</a> for Grafana</li>
-<li><a href="https://github.com/k0rdent/kof/tree/v1.4.0/kof-operator/internal/controller">kof-operator</a> (don't confuse it with the <code>kof-operators</code> chart) for auto-configuration</li>
+<li><a href="https://github.com/k0rdent/kof/tree/v1.5.0/charts/kof-dashboards">kof-dashboards</a> for Grafana</li>
+<li><a href="https://github.com/k0rdent/kof/tree/v1.5.0/kof-operator/internal/controller">kof-operator</a> (don't confuse it with the <code>kof-operators</code> chart) for auto-configuration</li>
 <li><a href="https://github.com/jacksontj/promxy">Promxy</a> for aggregating Prometheus metrics from regional clusters</li>
 </ul>
 <h3 id="kof-regional">kof-regional<a class="headerlink" href="#kof-regional" title="Permanent link">#</a></h3>
 <ul>
-<li><a href="https://github.com/k0rdent/kof/blob/v1.4.0/charts/kof-regional/templates/regional-multi-cluster-service.yaml">MultiClusterService</a>
+<li><a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-regional/templates/regional-multi-cluster-service.yaml">MultiClusterService</a>
   which configures and installs <code>kof-storage</code> and other charts to regional clusters</li>
 </ul>
 <h3 id="kof-child">kof-child<a class="headerlink" href="#kof-child" title="Permanent link">#</a></h3>
 <ul>
-<li><a href="https://github.com/k0rdent/kof/blob/v1.4.0/charts/kof-child/templates/child-multi-cluster-service.yaml">MultiClusterService</a>
+<li><a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-child/templates/child-multi-cluster-service.yaml">MultiClusterService</a>
   which configures and installs <code>kof-collectors</code> and other charts to child clusters</li>
-</ul>
-<h3 id="kof-istio">kof-istio<a class="headerlink" href="#kof-istio" title="Permanent link">#</a></h3>
-<ul>
-<li>Optional <a href="https://istio.io/">Istio</a> support for secure connectivity between clusters without external DNS</li>
 </ul>
 <h3 id="kof-storage">kof-storage<a class="headerlink" href="#kof-storage" title="Permanent link">#</a></h3>
 <ul>
@@ -5202,7 +5143,7 @@ Cloud 1..N
 <li><a href="https://github.com/kubernetes-sigs/external-dns">external-dns</a> to communicate with other clusters</li>
 <li><a href="https://www.jaegertracing.io/">Jaeger</a> tracing platform, managed by <a href="https://github.com/jaegertracing/jaeger-operator">jaeger-operator</a></li>
 <li><a href="https://dexidp.io/">Dex</a> SSO <a href="https://github.com/dexidp/helm-charts/tree/master/charts/dex">chart</a></li>
-<li><a href="https://github.com/k0rdent/kof/tree/v1.4.0/charts/kof-dashboards">kof-dashboards</a> for Grafana</li>
+<li><a href="https://github.com/k0rdent/kof/tree/v1.5.0/charts/kof-dashboards">kof-dashboards</a> for Grafana</li>
 </ul>
 <h3 id="kof-collectors">kof-collectors<a class="headerlink" href="#kof-collectors" title="Permanent link">#</a></h3>
 <ul>
