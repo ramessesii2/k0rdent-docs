@@ -4772,6 +4772,11 @@ The <code>k0rdent.mirantis.com/istio-mesh</code> label allows propagating <code>
 <p>
 To enable connectivity between a child cluster and the regional cluster, set the <code>k0rdent.mirantis.com/istio-mesh</code> label with the same <code>&lt;REGION_NAME&gt;</code> value on both clusters.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+To use Istio in the KCM Regional cluster together with KOF, make sure your instances have sufficient RAM, CPU, and disk resources. For example, <a href="https://aws.amazon.com/ec2/instance-types/t3/">t3.large</a> instance on AWS are the minimal instance type that provides enough RAM and CPU for this workload.</p>
+</div>
 <h2 id="deploying-child-clusters-in-a-kcm-region">Deploying Child Clusters in a KCM Region<a class="headerlink" href="#deploying-child-clusters-in-a-kcm-region" title="Permanent link">#</a></h2>
 <p>By now you have created the Region, Credential, and ClusterDeployment resources.
 The KCM/KOF Regional cluster is up and running.</p>

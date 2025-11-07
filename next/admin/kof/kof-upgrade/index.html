@@ -5223,7 +5223,7 @@ ls<span class="w"> </span>values-*.bak
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>
-To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="kcm-region.md">KCM Region With KOF</a> guide on top of the steps below.</p>
+To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="../kof-kcm-region/">KCM Region With KOF</a> guide on top of the steps below.</p>
 </div>
 <p><strong>Important!!!</strong></p>
 <div class="admonition notice">
@@ -5301,17 +5301,8 @@ To estimate how much storage you need for the backup, open the <a href="../kof-u
 <h4 id="connect-to-the-backup-pod">Connect to the Backup Pod<a class="headerlink" href="#connect-to-the-backup-pod" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;<span class="w"> </span>--<span class="w"> </span>/bin/sh
 </code></pre></div>
-<h4 id="back-up-victoriametrics-data">Back Up VictoriaMetrics Data<a class="headerlink" href="#back-up-victoriametrics-data" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Accept-Encoding: gzip&#39;</span><span class="w"> </span>-sSN<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>&lt;read_metrics_endpoint&gt;/api/v1/export<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;match[]={__name__!=&quot;&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>&gt;<span class="w"> </span>victoria-metrics-backup.gz
-</code></pre></div>
-<h4 id="back-up-victorialogs-data">Back Up VictoriaLogs Data<a class="headerlink" href="#back-up-victorialogs-data" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Accept-Encoding: gzip&#39;</span><span class="w"> </span>-sSN<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>&lt;read_logs_endpoint&gt;/select/logsql/query<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;query=*&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>victoria-logs-backup.gz
-</code></pre></div>
+<h4 id="back-up-victoriametricslogs-data">Back Up VictoriaMetrics/Logs Data<a class="headerlink" href="#back-up-victoriametricslogs-data" title="Permanent link">#</a></h4>
+<p>For instructions on creating backups of VictoriaMetrics and log data, refer to the <a href="#data-backup">Data Backup</a> section.</p>
 <h4 id="optional-download-backups-locally">(Optional) Download Backups Locally<a class="headerlink" href="#optional-download-backups-locally" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;:victoria-metrics-backup.gz<span class="w"> </span>./victoria-metrics-backup.gz
 kubectl<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;:victoria-logs-backup.gz<span class="w"> </span>./victoria-logs-backup.gz
@@ -5400,16 +5391,8 @@ kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </
 <h4 id="connect-to-the-backup-pod_1">Connect to the Backup Pod<a class="headerlink" href="#connect-to-the-backup-pod_1" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;<span class="w"> </span>--<span class="w"> </span>/bin/sh
 </code></pre></div>
-<h4 id="restore-victoriametrics-data">Restore VictoriaMetrics Data<a class="headerlink" href="#restore-victoriametrics-data" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-T<span class="w"> </span>victoria-metrics-backup.gz<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>http://&lt;CLUSTER_NAME&gt;-vminsert:8480/insert/0/prometheus/api/v1/import
-</code></pre></div>
-<h4 id="restore-victorialogs-data">Restore VictoriaLogs Data<a class="headerlink" href="#restore-victorialogs-data" title="Permanent link">#</a></h4>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-T<span class="w"> </span>victoria-logs-backup.gz<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>http://&lt;CLUSTER_NAME&gt;-logs-insert:9481/insert/jsonline
-</code></pre></div>
+<h4 id="restore-victoriametricslogs-data">Restore VictoriaMetrics/Logs Data<a class="headerlink" href="#restore-victoriametricslogs-data" title="Permanent link">#</a></h4>
+<p>Follow the restore steps in the <a href="#data-backup">Data Backup</a> section to import backups into VM/VL.</p>
 <h2 id="upgrade-to-v140">Upgrade to v1.4.0<a class="headerlink" href="#upgrade-to-v140" title="Permanent link">#</a></h2>
 <ul>
 <li><code>PromxyServerGroup</code> CRD was moved from the <code>crds/</code> directory to the <code>templates/</code> directory for auto-upgrade.</li>

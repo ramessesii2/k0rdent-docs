@@ -4773,17 +4773,11 @@
     NAG --&gt; MD
     NAG --&gt; AD
 
-    AD --&gt; R[Regional...]
-    I --&gt; R
+    I --&gt; R[KOF Regional:&lt;br&gt;&lt;br&gt;own ClusterDeployment&lt;br&gt;or shared with KCM Region&lt;br&gt;or with Management&lt;br&gt;or just ConfigMap]
     MD --&gt; R
+    AD --&gt; R
 
-    R --&gt; CD[...ClusterDeployment]
-    R --&gt; CM[...ConfigMap]
-    R --&gt; RIM[...in Management]
-
-    CD --&gt; M2[Store KOF data&lt;br&gt;from Management...]
-    CM --&gt; M2
-    RIM --&gt; M2
+    R --&gt; M2[Store KOF data&lt;br&gt;from Management...]
 
     M2 --&gt; M2M[**...to Management**]
     M2 --&gt; M2R[...to Regional&lt;br&gt;with Istio&lt;br&gt;or without]
@@ -5024,7 +5018,7 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>
-To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="kcm-region.md">KCM Region With KOF</a> guide on top of the steps below.</p>
+To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="../kof-kcm-region/">KCM Region With KOF</a> guide on top of the steps below.</p>
 </div>
 <p>To install KOF on the regional cluster,
 look through the default values of the <a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-storage/values.yaml">kof-storage</a> chart,
@@ -5265,7 +5259,7 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>
-To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="kcm-region.md">KCM Region With KOF</a> guide on top of the steps below.</p>
+To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="../kof-kcm-region/">KCM Region With KOF</a> guide on top of the steps below.</p>
 </div>
 <p>To install KOF on the actual cluster to be monitored,
 look through the default values of the <a href="https://github.com/k0rdent/kof/blob/v1.5.0/charts/kof-operators/values.yaml">kof-operators</a>
@@ -5402,6 +5396,11 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <p>Watch while the cluster is deployed until all values of <code>READY</code> are <code>True</code>:
     <div class="highlight"><pre><span></span><code>clusterctl<span class="w"> </span>describe<span class="w"> </span>cluster<span class="w"> </span>-n<span class="w"> </span>kcm-system<span class="w"> </span><span class="nv">$CHILD_CLUSTER_NAME</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--show-conditions<span class="w"> </span>all
+</code></pre></div></p>
+<p>If the child cluster is created in <a href="../../regional-clusters/">KCM Region</a>,
+get the <code>regional-kubeconfig</code> from <a href="../kof-verification/">KOF Verification</a> and run:
+<div class="highlight"><pre><span></span><code><span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig<span class="w"> </span>clusterctl<span class="w"> </span>describe<span class="w"> </span>cluster<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kcm-system<span class="w"> </span><span class="nv">$CHILD_CLUSTER_NAME</span><span class="w"> </span>--show-conditions<span class="w"> </span>all
 </code></pre></div></p>
 </li>
 </ol>
