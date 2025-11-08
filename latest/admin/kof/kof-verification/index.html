@@ -2637,6 +2637,8 @@
       
         
       
+        
+      
     
     
     
@@ -2708,6 +2710,27 @@
   
   <span class="md-ellipsis">
     Installing KOF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kof-kcm-region/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KCM Region With KOF
   </span>
   
 
@@ -2938,11 +2961,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../kof-limits/" class="md-nav__link">
+      <a href="../kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -3189,6 +3212,8 @@
       
         
       
+        
+      
     
     
     
@@ -3323,6 +3348,27 @@
   
   <span class="md-ellipsis">
     Remove Beach Head Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/services/service-pause/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pause Beach Head Services Reconciliation
   </span>
   
 
@@ -4646,12 +4692,28 @@
 <h2 id="verification-steps">Verification steps<a class="headerlink" href="#verification-steps" title="Permanent link">#</a></h2>
 <ol>
 <li>
+<p>Get kubeconfigs of the regional and child clusters:
+    <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>-n<span class="w"> </span>kcm-system<span class="w"> </span><span class="nv">$REGIONAL_CLUSTER_NAME</span>-kubeconfig<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">={</span>.data.value<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>regional-kubeconfig
+
+kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>-n<span class="w"> </span>kcm-system<span class="w"> </span><span class="nv">$CHILD_CLUSTER_NAME</span>-kubeconfig<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">={</span>.data.value<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>child-kubeconfig
+</code></pre></div></p>
+<p>If the child cluster is created in <a href="../../regional-clusters/">KCM Region</a>, run:
+<div class="highlight"><pre><span></span><code>KUBECONFIG=regional-kubeconfig kubectl get secret \
+  -n kcm-system $CHILD_CLUSTER_NAME-kubeconfig \
+  -o=jsonpath={.data.value} | base64 -d &gt; child-kubeconfig
+</code></pre></div></p>
+</li>
+<li>
 <p>Wait until the value of <code>HELMCHARTS</code> and <code>POLICYREFS</code>
     changes from <code>Provisioning</code> to <code>Provisioned</code>:
     <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clustersummaries<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide
-</code></pre></div>
-    If you see the <code>Failed/Provisioning</code> loop, check status and logs:
-    <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clustersummaries<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
+
+<span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>clustersummaries<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div></p>
+<p>If you see the <code>Failed/Provisioning</code> loop, check status and logs:
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clustersummaries<span class="w"> </span>-A<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>yq<span class="w"> </span><span class="s1">&#39;.items[].status.featureSummaries[]</span>
 <span class="s1">  | select(.status != &quot;Provisioned&quot;)&#39;</span>
 
@@ -4662,13 +4724,7 @@ kubectl<span class="w"> </span>logs<span class="w"> </span>-n<span class="w"> </
 <li>
 <p>Wait for all pods in the regional and child clusters to show as <code>Running</code>
     in the namespaces <code>kof, kube-system, projectsveltos</code>:
-    <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>-n<span class="w"> </span>kcm-system<span class="w"> </span><span class="nv">$REGIONAL_CLUSTER_NAME</span>-kubeconfig<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">={</span>.data.value<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>regional-kubeconfig
-
-kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>-n<span class="w"> </span>kcm-system<span class="w"> </span><span class="nv">$CHILD_CLUSTER_NAME</span>-kubeconfig<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-o<span class="o">=</span><span class="nv">jsonpath</span><span class="o">={</span>.data.value<span class="o">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span>&gt;<span class="w"> </span>child-kubeconfig
-
-<span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-A
+    <div class="highlight"><pre><span></span><code><span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-A
 <span class="nv">KUBECONFIG</span><span class="o">=</span>child-kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span>-A
 </code></pre></div></p>
 </li>

@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../kof-install/">
+        <link rel="prev" href="../kof-kcm-region/">
       
       
         <link rel="next" href="../kof-verification/">
@@ -2637,6 +2637,8 @@
       
         
       
+        
+      
     
     
     
@@ -2721,6 +2723,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../kof-kcm-region/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KCM Region With KOF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2770,11 +2793,173 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#data-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Backup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup-victoria-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup Victoria Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-victoria-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup Victoria Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-migration-to-a-new-regional-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data migration to a new regional cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data migration to a new regional cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#victoria-logs-and-metrics-data-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Victoria Logs and Metrics Data Migration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgrade-to-any-version" class="md-nav__link">
     <span class="md-ellipsis">
       Upgrade to any version
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-to-v150" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade to v1.5.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upgrade to v1.5.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-back-up-data-from-istio-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Back Up Data from Istio Clusters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-clean-up-the-old-istio-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Clean Up the Old Istio Clusters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-remove-the-old-istio-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Remove the Old Istio Chart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deploy-new-istio-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Deploy New Istio Release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-upgrade-the-kof-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Upgrade the KOF Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-restart-the-kof-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Restart the KOF Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-resume-sveltos-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Resume Sveltos Synchronization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-add-new-labels-to-clusterdeployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Add New Labels to ClusterDeployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-restore-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Restore Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2956,11 +3141,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../kof-limits/" class="md-nav__link">
+      <a href="../kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -3207,6 +3392,8 @@
       
         
       
+        
+      
     
     
     
@@ -3341,6 +3528,27 @@
   
   <span class="md-ellipsis">
     Remove Beach Head Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/services/service-pause/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pause Beach Head Services Reconciliation
   </span>
   
 
@@ -4602,11 +4810,173 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#data-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Backup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup-victoria-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup Victoria Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup-victoria-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup Victoria Logs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-migration-to-a-new-regional-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data migration to a new regional cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data migration to a new regional cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migration-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#victoria-logs-and-metrics-data-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Victoria Logs and Metrics Data Migration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgrade-to-any-version" class="md-nav__link">
     <span class="md-ellipsis">
       Upgrade to any version
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-to-v150" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade to v1.5.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Upgrade to v1.5.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-back-up-data-from-istio-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Back Up Data from Istio Clusters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-clean-up-the-old-istio-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Clean Up the Old Istio Clusters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-remove-the-old-istio-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Remove the Old Istio Chart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deploy-new-istio-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Deploy New Istio Release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-upgrade-the-kof-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Upgrade the KOF Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-restart-the-kof-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Restart the KOF Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-resume-sveltos-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Resume Sveltos Synchronization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-add-new-labels-to-clusterdeployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Add New Labels to ClusterDeployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-restore-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Restore Data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4678,6 +5048,167 @@
 
 
 <h1 id="upgrading-kof">Upgrading KOF<a class="headerlink" href="#upgrading-kof" title="Permanent link">#</a></h1>
+<h2 id="data-backup">Data Backup<a class="headerlink" href="#data-backup" title="Permanent link">#</a></h2>
+<p>Before migrating or upgrading, it's recommended to create a backup of your Victoria Logs and Victoria Metrics data. You can export the data from the regional cluster endpoints to local files using the following commands. Repeat the describe procedure for each of your regional cluster if needed.</p>
+<ol>
+<li>Lookup the regional cluster configmap named <code>kof-&lt;cluster-name&gt;</code> in the <code>kcm-system</code> namespace on the management cluster.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>cm<span class="w"> </span>kof-&lt;cluster-name&gt;<span class="w"> </span>-n<span class="w"> </span>kcm-system
+</code></pre></div>
+<ol>
+<li>Note the <code>read_logs_endpoint</code>, <code>read_metrics_endpoint</code>, and other endpoints values from the configmap.</li>
+<li>Ensure that you have enough free disk space (e.g. check the total used size of volumes allocated to your regional cluster). Victoria Logs/Metrics usually compress the data. Commands to fetch the data compress data too, but it stores data in a JSON line format, so requires 5 times more space.</li>
+<li>Ensure the connectivity to the regional cluster (e.g. do it on the Mothership cluster that surely has connectivity). If you are using Istio service mesh, consider to run a container in the Mothership cluster with attached properly sized volume in the kof namespace for connectivity to regional cluster endpoints.
+Check the k0rdent <a href="../../clusters/deploy-cluster/">cluster documentation</a> to retrieve kubernetes configuration.</li>
+</ol>
+<h3 id="backup-victoria-metrics">Backup Victoria Metrics<a class="headerlink" href="#backup-victoria-metrics" title="Permanent link">#</a></h3>
+<p>To backup all metrics data to a local file (<code>victoria-metrics-backup.gz</code>):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Accept-Encoding: gzip&#39;</span><span class="w"> </span>-sSN<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;&lt;username&gt;:&lt;password&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>&lt;read_metrics_endpoint&gt;/api/v1/export?reduce_mem_usage<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;match[]={__name__!=&quot;&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>&gt;<span class="w"> </span>victoria-metrics-backup.gz
+</code></pre></div>
+<p>To restore all metrics to a regional cluster from a local file run:</p>
+<p>Without Istio servicemesh:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">KUBECONFIG</span><span class="o">=</span>kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/vminsert-cluster<span class="w"> </span><span class="m">8480</span>:8480<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span><span class="c1"># use kubeconfig of regional cluster to import data</span>
+
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-T<span class="w"> </span>victoria-metrics-backup.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://localhost:8480/insert/0/prometheus/api/v1/import
+</code></pre></div>
+<p>With Istio servicemesh:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-T<span class="w"> </span>victoria-metrics-backup.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;CLUSTER_NAME&gt;-vminsert:8480/insert/0/prometheus/api/v1/import
+</code></pre></div>
+<ul>
+<li>This command fetches all metrics from the old regional cluster and saves them as a gzip-compressed file.</li>
+<li>You can later use this file for migration or restoration by uploading it to the new cluster.</li>
+</ul>
+<h3 id="backup-victoria-logs">Backup Victoria Logs<a class="headerlink" href="#backup-victoria-logs" title="Permanent link">#</a></h3>
+<p>Before querying logs increase the "search.maxQueryDuration" value for the <code>kof-storage-victoria-logs-cluster-vlselect</code> deployment which is just a 30s by default and not enough to query all logs at one request.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">KUBECONFIG</span><span class="o">=</span>kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>edit<span class="w"> </span>deployment/kof-storage-victoria-logs-cluster-vlselect<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span><span class="c1"># use kubeconfig of regional cluster to import data</span>
+</code></pre></div>
+<p>Edit and save the deployment spec to add <code>search.maxQueryDuration</code> argument (remove it after you finish the backup).</p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--search.maxQueryDuration=24h</span>
+</code></pre></div>
+<p>To backup all logs data to a local file (<code>victoria-logs-backup.gz</code>):</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Accept-Encoding: gzip&#39;</span><span class="w"> </span>-sSN<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;&lt;username&gt;:&lt;password&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>&lt;read_logs_endpoint&gt;/select/logsql/query<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;query=*&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>victoria-logs-backup.gz
+</code></pre></div>
+<ul>
+<li>This command fetches all logs from the old regional cluster and saves them as a gzip-compressed file.</li>
+<li>You can later use this file for migration or restoration by uploading it to the new cluster.</li>
+</ul>
+<p>To restore all logs to a regional cluster from a local file run:</p>
+<p>Without Istio servicemesh:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">KUBECONFIG</span><span class="o">=</span>kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/kof-storage-victoria-logs-cluster-vlinsert<span class="w"> </span><span class="m">9481</span>:9481<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span><span class="c1"># use kubeconfig of regional cluster to import data</span>
+
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-T<span class="w"> </span>victoria-logs-backup.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://localhost:9481/insert/jsonline
+</code></pre></div>
+<p><em>N.B.</em> the default <code>write_logs_endpoint</code> ends with <code>/insert/opentelemetry/v1/logs</code>: replace it with <code>/insert/jsonline</code>.</p>
+<p>With Istio servicemesh:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-T<span class="w"> </span>victoria-logs-backup.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;CLUSTER_NAME&gt;-logs-insert:9481/insert/jsonline
+</code></pre></div>
+<p><strong>Notes:</strong>
+- Replace <code>&lt;username&gt;:&lt;password&gt;</code>, <code>&lt;read_metrics_endpoint&gt;</code>, <code>&lt;read_logs_endpoint&gt;</code>, etc with your actual credentials and endpoints (lookup the <code>storage-vmuser-credentials</code> secret in the <code>kof</code> namespace for basic authentication credentials if you are not using Istio servicemesh)
+- For chunked or filtered backups, refer to the <a href="https://docs.victoriametrics.com/victorialogs/querying/#querying-logs">official documentation</a> for available query options.
+- Ensure you have sufficient disk space for the backup files.</p>
+<h2 id="data-migration-to-a-new-regional-cluster">Data migration to a new regional cluster<a class="headerlink" href="#data-migration-to-a-new-regional-cluster" title="Permanent link">#</a></h2>
+<p>This section describes the process for migrating data to a new KOF regional cluster, including both the cluster migration steps and the detailed procedure for migrating Victoria Logs and Metrics data.</p>
+<h3 id="migration-overview">Migration Overview<a class="headerlink" href="#migration-overview" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>Deploy a new kof-regional cluster.</strong></li>
+<li><strong>Add <code>k0rdent.mirantis.com/kof-regional-cluster-name</code> label</strong> to a child ClusterDeployment to point all collectors to the new regional cluster.</li>
+<li><strong>Ensure metrics and logs are available</strong> for the child cluster, confirming the new regional cluster is operational.</li>
+<li><strong>Change all other child clusters</strong> from the old regional cluster to the new one.</li>
+<li><strong>Start the data migration.</strong></li>
+<li><strong>Ensure that the data is migrated and explorable in Grafana</strong></li>
+<li><strong>Delete old kof-regional cluster</strong></li>
+<li><strong>Remove the label from child ClusterDeployments.</strong></li>
+</ol>
+<h3 id="victoria-logs-and-metrics-data-migration">Victoria Logs and Metrics Data Migration<a class="headerlink" href="#victoria-logs-and-metrics-data-migration" title="Permanent link">#</a></h3>
+<p>Follow these steps to migrate Victoria Logs and Metrics data from the old regional cluster to the new one:</p>
+<ol>
+<li><strong>Lookup the old regional cluster configmap</strong> named <code>kof-&lt;cluster-name&gt;</code> in the <code>kcm-system</code> namespace on the management cluster.</li>
+<li><strong>Note the <code>read_logs_endpoint</code> and <code>read_metrics_endpoint</code> values</strong> from the configmap.</li>
+<li><strong>Authentication and Service Mesh:</strong><ul>
+<li>If <strong>not using Istio servicemesh</strong>:<ul>
+<li>Lookup the <code>storage-vmuser-credentials</code> secret in the <code>kof</code> namespace for basic authentication credentials.</li>
+</ul>
+</li>
+<li>If <strong>using Istio servicemesh</strong>:<ul>
+<li>Copy the <code>istio-remote-secret-&lt;cluster-name&gt;</code> secret from the old regional cluster to the new regional cluster to enable Istio endpoints discovery.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Prepare a migration environment</strong> on the new regional cluster:
+    <div class="highlight"><pre><span></span><code><span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig<span class="w"> </span>kubectl<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="o">=</span>alpine:latest<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>migration<span class="w"> </span>--<span class="w"> </span>sh
+
+apk<span class="w"> </span>update
+apk<span class="w"> </span>add<span class="w"> </span>curl<span class="w"> </span>pv
+</code></pre></div></li>
+<li>
+<p><strong>Migrate metrics data</strong> by running the following command (replace placeholders as needed):
+    <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Accept-Encoding: gzip&#39;</span><span class="w"> </span>-sSN<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;&lt;username&gt;:&lt;password&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>&lt;read_metrics_endpoint&gt;/api/v1/export?reduce_mem_usage<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;match[]={__name__!=&quot;&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="p">|</span><span class="w"> </span>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span>-T<span class="w"> </span>-<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://vminsert-cluster.kof:8480/insert/0/prometheus/api/v1/import
+</code></pre></div></p>
+<p>Check <a href="https://docs.victoriametrics.com/victoriametrics/url-examples/#apiv1export">VictoriaMetrics API</a> for more details.</p>
+<p>The query fetches all metrics from the old regional cluster endpoint. If you need to split migration by chunks, please refer the documentation for <code>match[]</code> filter available options (by metric name, time range, etc)</p>
+<p>Reset vmselect cache after the migration:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>http://vmselect-cluster.kof:8481/internal/resetRollupResultCache
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Migrate logs data</strong> by running the following command (replace placeholders as needed):
+    <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Accept-Encoding: gzip&#39;</span><span class="w"> </span>-sSN<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;&lt;username&gt;:&lt;password&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>&lt;read_logs_endpoint&gt;/select/logsql/query<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;query=*&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>pv<span class="w"> </span><span class="p">|</span><span class="w"> </span>curl<span class="w"> </span>-H<span class="w"> </span><span class="s1">&#39;Content-Encoding: gzip&#39;</span><span class="w"> </span>-sSX<span class="w"> </span>POST<span class="w"> </span>-T<span class="w"> </span>-<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://kof-storage-victoria-logs-cluster-vlinsert.kof:9481/insert/jsonline
+</code></pre></div></p>
+<p>Check <a href="https://docs.victoriametrics.com/victorialogs/faq/#how-to-export-logs-from-victorialogs">VictoriaLogs FAQ</a> for more details.</p>
+<p>The query fetches all logs from the old regional cluster endpoint. If you need to split migration by chunks, please refer the documentation for <code>logsql</code> query filter available options (by stream name, time range, etc)</p>
+</li>
+</ol>
+<p>To migrate data with transformation please consider one of the following options:</p>
+<ul>
+<li>Backup data to a file with a JSON line format, change each json, restore the file to a new cluster</li>
+<li>Use the <a href="https://github.com/k0rdent/kof/tree/main/scripts/victoria-migration">Python script</a> with your custom transformation function</li>
+</ul>
+<p><strong>Explanation of curl parameters:</strong></p>
+<ul>
+<li><code>-H 'Accept-Encoding: gzip'</code>: Requests gzip-compressed response to reduce bandwidth.</li>
+<li><code>-sS</code>: Silent mode. Hides progress, shows error messages.</li>
+<li><code>-N</code>: Disables output buffering, streaming data as it arrives.</li>
+<li><code>-u "&lt;username&gt;:&lt;password&gt;"</code>: Specifies basic authentication credentials (not needed for Istio)</li>
+<li><code>-d 'match[]={__name__!=""}'</code>: Sends POST data to filter all metrics.</li>
+<li><code>| pv</code>: Pipes output through <code>pv</code> to monitor progress.</li>
+<li>Second <code>curl</code>:</li>
+<li><code>-H 'Content-Encoding: gzip'</code>: Informs the server that the data is gzip-compressed.</li>
+<li><code>-X POST</code>: Uses HTTP POST method.</li>
+<li><code>-T -</code>: Reads data from stdin (the pipe) and uploads it.</li>
+</ul>
+<p><strong>Notes:</strong> Ensure you have the correct credentials and endpoints for your environment. Adjust the commands as necessary for your authentication method and network setup.</p>
 <h2 id="upgrade-to-any-version">Upgrade to any version<a class="headerlink" href="#upgrade-to-any-version" title="Permanent link">#</a></h2>
 <ul>
 <li>Create a backup of each KOF chart values in each cluster, for example:
@@ -4711,6 +5242,180 @@ ls<span class="w"> </span>values-*.bak
 </ul>
 </li>
 </ul>
+<h2 id="upgrade-to-v150">Upgrade to v1.5.0<a class="headerlink" href="#upgrade-to-v150" title="Permanent link">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+To use the new <a href="../../regional-clusters/">KCM Regional Clusters</a> with KOF, please apply the <a href="../kof-kcm-region/">KCM Region With KOF</a> guide on top of the steps below.</p>
+</div>
+<p><strong>Important!!!</strong></p>
+<div class="admonition notice">
+<p class="admonition-title">Notice</p>
+<p>
+This is for users of <strong>kof-istio</strong> only.</p>
+</div>
+<p>Starting from the <strong>v1.5.0</strong> release, Istio has been moved to a separate repository, which changes the installation and upgrade process. Upgrading KOF <strong>will trigger a complete uninstallation</strong> of all components across Istio clusters. To prevent data loss and ensure a smooth migration, you must carefully follow the steps in the given order. Again, the steps below are only required if any Istio clusters were deployed.</p>
+<h3 id="1-back-up-data-from-istio-clusters">1. Back Up Data from Istio Clusters<a class="headerlink" href="#1-back-up-data-from-istio-clusters" title="Permanent link">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+Perform all backup steps in this section <strong>for each Istio cluster</strong> individually. Each cluster must have its own backup before proceeding with the upgrade.</p>
+</div>
+<h4 id="create-a-persistentvolumeclaim">Create a PersistentVolumeClaim<a class="headerlink" href="#create-a-persistentvolumeclaim" title="Permanent link">#</a></h4>
+<p>Create a <code>PersistentVolumeClaim</code> named <code>backup-pvc</code> on the management cluster:</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">kubectl apply -f - &lt;&lt;EOF</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-pvc</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kof</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span><span class="w"> </span><span class="c1"># Adjust according to your data size</span>
+<span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard</span>
+<span class="l l-Scalar l-Scalar-Plain">EOF</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+To estimate how much storage you need for the backup, open the <a href="../kof-using/#access-to-the-kof-ui">kof-ui</a>, navigate to the <code>VictoriaMetrics/Logs</code> section, and click the <code>VictoriaMetrics storage</code> pod name on the cluster you want to back up. Find the <code>Data Size</code> metric and multiply this value by at least two (or by at least five for VictoriaLogs). This is because the metric shows data compressed using the VictoriaMetrics algorithm, while the backup will be stored in a simple gzip format, which does not compress as efficiently.</p>
+</div>
+<h4 id="create-a-backup-pod-with-curl">Create a Backup Pod with <code>curl</code><a class="headerlink" href="#create-a-backup-pod-with-curl" title="Permanent link">#</a></h4>
+<p>Deploy a temporary pod for performing backups on the management cluster:</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">kubectl apply -f - &lt;&lt;EOF</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-deployment</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kof</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-deployment</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-deployment</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curlimages/curl:latest</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/bin/sleep&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;infinity&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home/curl_user</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-volume</span>
+<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-volume</span>
+<span class="w">        </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backup-pvc</span>
+<span class="l l-Scalar l-Scalar-Plain">EOF</span>
+</code></pre></div>
+<h4 id="retrieve-cluster-endpoints">Retrieve Cluster Endpoints<a class="headerlink" href="#retrieve-cluster-endpoints" title="Permanent link">#</a></h4>
+<p>Locate the regional cluster <code>ConfigMap</code> named <code>kof-&lt;cluster-name&gt;</code> in the <code>kcm-system</code> namespace of the management cluster.</p>
+<p>Record the following endpoint values:</p>
+<ul>
+<li>read_logs_endpoint</li>
+<li>read_metrics_endpoint</li>
+</ul>
+<h4 id="connect-to-the-backup-pod">Connect to the Backup Pod<a class="headerlink" href="#connect-to-the-backup-pod" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;<span class="w"> </span>--<span class="w"> </span>/bin/sh
+</code></pre></div>
+<h4 id="back-up-victoriametricslogs-data">Back Up VictoriaMetrics/Logs Data<a class="headerlink" href="#back-up-victoriametricslogs-data" title="Permanent link">#</a></h4>
+<p>For instructions on creating backups of VictoriaMetrics and log data, refer to the <a href="#data-backup">Data Backup</a> section.</p>
+<h4 id="optional-download-backups-locally">(Optional) Download Backups Locally<a class="headerlink" href="#optional-download-backups-locally" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;:victoria-metrics-backup.gz<span class="w"> </span>./victoria-metrics-backup.gz
+kubectl<span class="w"> </span>cp<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;:victoria-logs-backup.gz<span class="w"> </span>./victoria-logs-backup.gz
+</code></pre></div>
+<h3 id="2-clean-up-the-old-istio-clusters">2. Clean Up the Old Istio Clusters<a class="headerlink" href="#2-clean-up-the-old-istio-clusters" title="Permanent link">#</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>
+Ensure that both <code>VictoriaMetrics</code> and <code>VictoriaLogs</code> backup files have been successfully created and verified before the cluster cleanup.</p>
+</div>
+<h4 id="pause-synchronization-on-managed-clusters">Pause Synchronization on Managed Clusters<a class="headerlink" href="#pause-synchronization-on-managed-clusters" title="Permanent link">#</a></h4>
+<p>Before starting the cleanup, execute the following command on the management cluster:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>scale<span class="w"> </span>--replicas<span class="o">=</span><span class="m">0</span><span class="w"> </span>deployment/addon-controller<span class="w"> </span>-n<span class="w"> </span>projectsveltos
+</code></pre></div>
+<p>This command temporarily pauses synchronization between the management cluster and all managed clusters. It ensures that no old configurations are applied during the cleanup process.</p>
+<h4 id="cleanup-old-kof-components">Cleanup Old KOF Components<a class="headerlink" href="#cleanup-old-kof-components" title="Permanent link">#</a></h4>
+<p>Use the <code>kof-nuke.bash</code> script (located in the <code>kof/script</code> directory) to completely remove all old <code>kof</code> resources from the remote cluster.</p>
+<p>Run the script for each <strong>regional</strong> and <strong>child</strong> cluster, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ls<span class="w"> </span><span class="nv">$KUBECONFIG</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>scripts/kof-nuke.bash
+</code></pre></div>
+<p>Cleanup typically takes 1–5 minutes, depending on the cluster size and network speed.</p>
+<h4 id="cleanup-old-istio-components">Cleanup Old Istio Components<a class="headerlink" href="#cleanup-old-istio-components" title="Permanent link">#</a></h4>
+<p>Remove old Istio components for each <strong>regional</strong> and <strong>child</strong> cluster</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KUBECONFIG</span><span class="o">=</span>regional-kubeconfig
+
+helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>kof-istio-gateway
+helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>kof-istio
+helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>cert-manager
+kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>istio-system<span class="w"> </span>--wait
+kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span>-o<span class="w"> </span>name<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>--color<span class="o">=</span>never<span class="w"> </span><span class="s1">&#39;istio.io&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>kubectl<span class="w"> </span>delete
+</code></pre></div>
+<p>Once the cleanup of all regional and child clusters is complete,
+run <code>unset KUBECONFIG</code> to use the <strong>management</strong> cluster in the next steps.</p>
+<h3 id="3-remove-the-old-istio-chart">3. Remove the Old Istio Chart<a class="headerlink" href="#3-remove-the-old-istio-chart" title="Permanent link">#</a></h3>
+<p>Remove the old Istio release and related resources from the management cluster:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>un<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>kof-istio
+kubectl<span class="w"> </span>delete<span class="w"> </span>namespace<span class="w"> </span>istio-system<span class="w"> </span>--wait
+kubectl<span class="w"> </span>get<span class="w"> </span>crd<span class="w"> </span>-o<span class="w"> </span>name<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>--color<span class="o">=</span>never<span class="w"> </span><span class="s1">&#39;istio.io&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>kubectl<span class="w"> </span>delete
+</code></pre></div>
+<h3 id="4-deploy-new-istio-release">4. Deploy New Istio Release<a class="headerlink" href="#4-deploy-new-istio-release" title="Permanent link">#</a></h3>
+<p>Install the new Istio release to the management cluster.</p>
+<h4 id="install-the-k0rdent-istio-base-chart">Install the <code>k0rdent-istio-base</code> Chart<a class="headerlink" href="#install-the-k0rdent-istio-base-chart" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--wait<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--create-namespace<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>k0rdent-istio-base<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>cert-manager-service-template.enabled<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="nv">injectionNamespaces</span><span class="o">=</span><span class="s2">&quot;{kof}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>oci://ghcr.io/k0rdent/istio/charts/k0rdent-istio-base<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0
+</code></pre></div>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><code>cert-manager-service-template.enabled=false</code> disables the deployment of the cert-manager service template. It should already be deployed as part of KOF.</li>
+<li><code>injectionNamespaces="{kof}"</code> ensures Istio sidecars are injected only into the <code>kof</code> namespace. To inject sidecars into additional namespaces, list them comma-separated: <code>{kof,&lt;YOUR_NAMESPACE&gt;}</code>.</li>
+</ul>
+<h4 id="install-the-k0rdent-istio-chart">Install the <code>k0rdent-istio</code> Chart<a class="headerlink" href="#install-the-k0rdent-istio-chart" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>-i<span class="w"> </span>--wait<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>k0rdent-istio<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span>cert-manager-service-template.enabled<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="s2">&quot;istiod.meshConfig.extensionProviders[0].name=otel-tracing&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="s2">&quot;istiod.meshConfig.extensionProviders[0].opentelemetry.port=4317&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--set<span class="w"> </span><span class="s2">&quot;istiod.meshConfig.extensionProviders[0].opentelemetry.service=kof-collectors-daemon-collector.kof.svc.cluster.local&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>oci://ghcr.io/k0rdent/istio/charts/k0rdent-istio<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0
+</code></pre></div>
+<h3 id="5-upgrade-the-kof-version">5. Upgrade the KOF Version<a class="headerlink" href="#5-upgrade-the-kof-version" title="Permanent link">#</a></h3>
+<p>Upgrade KOF to the target version following standard upgrade procedures.</p>
+<h3 id="6-restart-the-kof-pods">6. Restart the KOF Pods<a class="headerlink" href="#6-restart-the-kof-pods" title="Permanent link">#</a></h3>
+<p>You must restart the KOF pods on the management cluster to update the <code>istio-proxy</code> sidecar. Without restarting, you may encounter connection errors or Istio pod crashes.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>--all<span class="w"> </span>-n<span class="w"> </span>kof
+</code></pre></div>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>If you have additional namespaces with Istio sidecar injection, make sure to restart pods in those namespaces as well.</li>
+<li>Restarting ensures all pods run with the updated Istio configuration and sidecar versions.</li>
+</ul>
+<h3 id="7-resume-sveltos-synchronization">7. Resume Sveltos Synchronization<a class="headerlink" href="#7-resume-sveltos-synchronization" title="Permanent link">#</a></h3>
+<p>Resume synchronization between the management cluster and all managed (regional and child) clusters.</p>
+<p>Run the following command on the management cluster:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>scale<span class="w"> </span>--replicas<span class="o">=</span><span class="m">1</span><span class="w"> </span>deployment/addon-controller<span class="w"> </span>-n<span class="w"> </span>projectsveltos
+</code></pre></div>
+<h3 id="8-add-new-labels-to-clusterdeployment">8. Add New Labels to ClusterDeployment<a class="headerlink" href="#8-add-new-labels-to-clusterdeployment" title="Permanent link">#</a></h3>
+<p>To enable Istio on your clusters, you need to add two new labels to the corresponding ClusterDeployment resources.</p>
+<ul>
+<li><code>k0rdent.mirantis.com/istio-role: member</code> - Apply this label to СlustersDeployment where Istio should be installed.</li>
+<li><code>k0rdent.mirantis.com/istio-gateway: "true"</code> - Apply this label only to regional clusters to install Istio gateway.</li>
+</ul>
+<h3 id="9-restore-data">9. Restore Data<a class="headerlink" href="#9-restore-data" title="Permanent link">#</a></h3>
+<p>Use the backup created in step 2 to restore VictoriaMetrics and VictoriaLogs data.</p>
+<h4 id="connect-to-the-backup-pod_1">Connect to the Backup Pod<a class="headerlink" href="#connect-to-the-backup-pod_1" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>&lt;BACKUP_DEPLOYMENT_POD_NAME&gt;<span class="w"> </span>--<span class="w"> </span>/bin/sh
+</code></pre></div>
+<h4 id="restore-victoriametricslogs-data">Restore VictoriaMetrics/Logs Data<a class="headerlink" href="#restore-victoriametricslogs-data" title="Permanent link">#</a></h4>
+<p>Follow the restore steps in the <a href="#data-backup">Data Backup</a> section to import backups into VM/VL.</p>
 <h2 id="upgrade-to-v140">Upgrade to v1.4.0<a class="headerlink" href="#upgrade-to-v140" title="Permanent link">#</a></h2>
 <ul>
 <li><code>PromxyServerGroup</code> CRD was moved from the <code>crds/</code> directory to the <code>templates/</code> directory for auto-upgrade.</li>
@@ -4776,6 +5481,7 @@ ls<span class="w"> </span>values-*.bak
 <span class="s">EOF</span>
 </code></pre></div></li>
 </ul>
+<hr />
 <h2 id="upgrade-to-v110">Upgrade to v1.1.0<a class="headerlink" href="#upgrade-to-v110" title="Permanent link">#</a></h2>
 <ul>
 <li>After you <code>helm upgrade</code> the <code>kof-mothership</code> chart, please run the following:

@@ -16,7 +16,7 @@
         <link rel="prev" href="../kof-scaling/">
       
       
-        <link rel="next" href="../kof-limits/">
+        <link rel="next" href="../kof-resources/">
       
       
       <link rel="icon" href="../../../img/k0rdent-logo-mark-inverted.svg">
@@ -2637,6 +2637,8 @@
       
         
       
+        
+      
     
     
     
@@ -2708,6 +2710,27 @@
   
   <span class="md-ellipsis">
     Installing KOF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kof-kcm-region/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KCM Region With KOF
   </span>
   
 
@@ -2938,11 +2961,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../kof-limits/" class="md-nav__link">
+      <a href="../kof-resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Resource Limits
+    Resource Requirements
   </span>
   
 
@@ -3189,6 +3212,8 @@
       
         
       
+        
+      
     
     
     
@@ -3323,6 +3348,27 @@
   
   <span class="md-ellipsis">
     Remove Beach Head Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user/services/service-pause/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pause Beach Head Services Reconciliation
   </span>
   
 
@@ -4664,8 +4710,7 @@ Make sure these are just your demo clusters and do not contain important data.</
 kubectl<span class="w"> </span>delete<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="o">=</span>foreground<span class="w"> </span>-f<span class="w"> </span>regional-cluster.yaml
 </code></pre></div>
 <p>To remove KOF from the management cluster:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="w"> </span>foreground<span class="w"> </span>-n<span class="w"> </span>istio-system<span class="w"> </span>kof-istio
-helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="w"> </span>foreground<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-child
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="w"> </span>foreground<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-child
 helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="w"> </span>foreground<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-regional
 helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="w"> </span>foreground<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-collectors
 helm<span class="w"> </span>uninstall<span class="w"> </span>--wait<span class="w"> </span>--cascade<span class="w"> </span>foreground<span class="w"> </span>-n<span class="w"> </span>kof<span class="w"> </span>kof-storage
