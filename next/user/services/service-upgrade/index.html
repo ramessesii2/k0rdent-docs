@@ -4736,13 +4736,24 @@ If you try to change the service template, in the logs, you'll see an error mess
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nt">status</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">servicesUpgradePaths</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">availableUpgrades</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upgradePaths</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-5</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
 <span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
 <span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-3</span>
+<span class="w">      </span><span class="nt">availableUpgrades</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upgradePaths</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-5</span>
 </code></pre></div>
+<p>The <code>.status.servicesUpgradePaths[]</code> array shows:
+- <code>name</code>: Service name
+- <code>namespace</code>: Service namespace
+- <code>template</code>: Currently deployed ServiceTemplate
+- <code>availableUpgrades[]</code>: Available upgrade options
+  - <code>upgradePaths[]</code>: Array of ServiceTemplate names in the upgrade path</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>
+The upgrade paths are calculated from the ServiceTemplateChain. If multiple paths exist to reach the target template version, the shortest path is shown.</p>
+</div>
 <p>Now you can update the <code>ClusterDeployment</code> or <code>MultiClusterService</code> object to upgrade the service to the available version:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0rdent.mirantis.com/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterDeployment</span>

@@ -3266,6 +3266,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Checking Status
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3275,6 +3286,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-status-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Status Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Status Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service States
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clusterdeployment-status-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClusterDeployment Status Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-service-upgrade-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Service Upgrade Paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiclusterservice-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      MultiClusterService Status
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4568,6 +4658,74 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-status-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Status Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Status Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service States
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clusterdeployment-status-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClusterDeployment Status Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checking-service-upgrade-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking Service Upgrade Paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiclusterservice-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      MultiClusterService Status
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4598,9 +4756,29 @@
 
 
 <h1 id="checking-status">Checking status<a class="headerlink" href="#checking-status" title="Permanent link">#</a></h1>
-<p>The <code>.status.services</code> field of the <code>ClusterDeployment</code> object shows the status for each of the beach-head services.
-For example, if you were to <code>describe</code> the <code>ClusterDeployment</code> with these services, you would see conditions that show
-status information, as in:</p>
+<p>The <code>.status.services</code> field of the <code>ClusterDeployment</code> and <code>MultiClusterService</code> objects shows the deployment status for each service.</p>
+<h2 id="service-status-structure">Service Status Structure<a class="headerlink" href="#service-status-structure" title="Permanent link">#</a></h2>
+<p>Each entry in <code>.status.services[]</code> contains:</p>
+<ul>
+<li><code>type</code>: Deployment type - <code>Helm</code>, <code>Kustomize</code>, or <code>Resource</code></li>
+<li><code>name</code>: Service name</li>
+<li><code>namespace</code>: Service namespace</li>
+<li><code>template</code>: ServiceTemplate name used</li>
+<li><code>version</code>: Application version from the ServiceTemplate</li>
+<li><code>state</code>: Current deployment state (see below)</li>
+<li><code>failureMessage</code>: Error message if state is <code>Failed</code></li>
+<li><code>lastStateTransitionTime</code>: When the state last changed</li>
+</ul>
+<h3 id="service-states">Service States<a class="headerlink" href="#service-states" title="Permanent link">#</a></h3>
+<ul>
+<li><strong><code>Pending</code></strong>: Service is waiting (e.g., for dependencies to be satisfied)</li>
+<li><strong><code>Provisioning</code></strong>: Service is currently being deployed</li>
+<li><strong><code>Deployed</code></strong>: Service successfully deployed and running</li>
+<li><strong><code>Failed</code></strong>: Service deployment failed (check <code>failureMessage</code>)</li>
+<li><strong><code>Deleting</code></strong>: Service is being removed</li>
+</ul>
+<h2 id="clusterdeployment-status-example">ClusterDeployment Status Example<a class="headerlink" href="#clusterdeployment-status-example" title="Permanent link">#</a></h2>
+<p>For example, if you were to <code>describe</code> the <code>ClusterDeployment</code> with these services, you would see status information such as:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k0rdent.mirantis.com/v1beta1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterDeployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -4624,24 +4802,20 @@ status information, as in:</p>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">. . .</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">observedGeneration</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-cluster-deployment</span>
-<span class="w">    </span><span class="nt">clusterNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kcm-system</span>
-<span class="w">    </span><span class="nt">conditions</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-12-11T23:03:05Z&quot;</span>
-<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Provisioned</span>
-<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployed</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-3</span>
 <span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Helm</span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-3</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-12-11T23:03:05Z&quot;</span>
-<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Release kyverno/kyverno</span>
-<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Managing</span>
-<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kyverno.kyverno/SveltosHelmReleaseReady</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2024-12-11T23:03:05Z&quot;</span>
-<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Release ingress-nginx/ingress-nginx</span>
-<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Managing</span>
-<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx.ingress-nginx/SveltosHelmReleaseReady</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kyverno</span>
+<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kyverno</span>
+<span class="w">      </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployed</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kyverno-3-2-6</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Helm</span>
+<span class="w">      </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kyverno-3-2-6</span>
 </code></pre></div>
 <p>Based on the information above both kyverno and ingress-nginx are installed in their respective namespaces on the target cluster.
 You can check to see for yourself:</p>
@@ -4658,8 +4832,79 @@ You can check to see for yourself:</p>
 <div class="no-copy highlight"><pre><span></span><code><span class="go">NAME                                       READY   STATUS    RESTARTS   AGE</span>
 <span class="go">ingress-nginx-controller-cbcf8bf58-zhvph   1/1     Running   0          24m</span>
 </code></pre></div></p>
-<p>Youc an get more information on how to access the child cluster in the <a href="../../../admin/clusters/deploy-cluster/">create a cluster deployment</a>
+<p>You can get more information on how to access the child cluster in the <a href="../../../admin/clusters/deploy-cluster/">create a cluster deployment</a>
 chapter, and more on <code>ServiceTemplate</code> objects in the <a href="../../../reference/template/">Template Guide</a>.</p>
+<h2 id="checking-service-upgrade-paths">Checking Service Upgrade Paths<a class="headerlink" href="#checking-service-upgrade-paths" title="Permanent link">#</a></h2>
+<p>Both <code>ClusterDeployment</code> and <code>MultiClusterService</code> provide upgrade path information in <code>.status.servicesUpgradePaths[]</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">status</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">servicesUpgradePaths</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-3</span>
+<span class="w">      </span><span class="nt">availableUpgrades</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upgradePaths</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-5</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-12-0</span>
+</code></pre></div>
+<p>This shows which ServiceTemplates the current service can be upgraded to. See <a href="../service-upgrade/">Service Upgrade</a> for more details.</p>
+<h2 id="monitoring-commands">Monitoring Commands<a class="headerlink" href="#monitoring-commands" title="Permanent link">#</a></h2>
+<p><strong>View service status:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.services[*].state}&#39;</span>
+</code></pre></div></p>
+<p><strong>Check for failed services:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.services[?(@.state==&quot;Failed&quot;)]}&#39;</span>
+</code></pre></div></p>
+<p><strong>View failure messages:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.services[*].failureMessage}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="s1">&#39;\n&#39;</span>
+</code></pre></div></p>
+<p><strong>Check service versions:</strong>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>clusterdeployment<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-n<span class="w"> </span>&lt;namespace&gt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .status.services[*]}{.name}{&quot;\t&quot;}{.version}{&quot;\n&quot;}{end}&#39;</span>
+</code></pre></div></p>
+<h2 id="multiclusterservice-status">MultiClusterService Status<a class="headerlink" href="#multiclusterservice-status" title="Permanent link">#</a></h2>
+<p>For <code>MultiClusterService</code>, the status includes service upgrade paths for all defined services and <code>MultiClusterService</code> conditions:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">status</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">conditions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-11-07T23:25:25Z&quot;</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="nt">observedGeneration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Succeeded</span>
+<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServicesReferencesValidation</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-11-07T23:25:25Z&quot;</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="nt">observedGeneration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Succeeded</span>
+<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ServicesDependencyValidation</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-11-07T23:25:25Z&quot;</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="nt">observedGeneration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Succeeded</span>
+<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MultiClusterServiceDependencyValidation</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-11-07T23:28:44Z&quot;</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/1</span>
+<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Succeeded</span>
+<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterInReadyState</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">lastTransitionTime</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2025-11-07T23:28:44Z&quot;</span>
+<span class="w">      </span><span class="nt">message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Object is ready</span>
+<span class="w">      </span><span class="nt">reason</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Succeeded</span>
+<span class="w">      </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;True&quot;</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ready</span>
+<span class="w">  </span><span class="nt">observedGeneration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">servicesUpgradePaths</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">availableUpgrades</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upgradePaths</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external-secrets-7vpwh</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">managed-eso</span>
+<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">global</span>
+<span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external-secrets-7vpwh</span>
+</code></pre></div>
+<p><strong>Monitor MultiClusterService:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># View overall status</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>multiclusterservice<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div></p>
 
 
 

@@ -3329,6 +3329,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ServiceTemplate Parameters
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3338,6 +3349,94 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#servicespec-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServiceSpec Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ServiceSpec Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-recommended-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Recommended Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuesfrom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      ValuesFrom Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helmoptions-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      HelmOptions Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deprecated-parameters-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deprecated Parameters (Legacy)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4568,6 +4667,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#servicespec-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServiceSpec Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ServiceSpec Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-recommended-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Recommended Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuesfrom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      ValuesFrom Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helmoptions-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      HelmOptions Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deprecated-parameters-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deprecated Parameters (Legacy)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4599,6 +4775,22 @@
 
 <h1 id="parameter-list">Parameter List<a class="headerlink" href="#parameter-list" title="Permanent link">#</a></h1>
 <p>Here is an idea of the parameters involved.</p>
+<h2 id="servicespec-parameters">ServiceSpec Parameters<a class="headerlink" href="#servicespec-parameters" title="Permanent link">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>
+The following fields are <strong>deprecated</strong> and should be configured in <code>.spec.serviceSpec.provider.config</code> instead:
+- <code>.spec.serviceSpec.syncMode</code>
+- <code>.spec.serviceSpec.driftIgnore</code>
+- <code>.spec.serviceSpec.driftExclusions</code>
+- <code>.spec.serviceSpec.priority</code>
+- <code>.spec.serviceSpec.stopOnConflict</code>
+- <code>.spec.serviceSpec.reload</code>
+- <code>.spec.serviceSpec.continueOnError</code>
+- <code>.spec.serviceSpec.templateResourceRefs</code>
+- <code>.spec.serviceSpec.policyRefs</code></p>
+</div>
+<h3 id="current-recommended-parameters">Current Recommended Parameters<a class="headerlink" href="#current-recommended-parameters" title="Permanent link">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -4609,34 +4801,29 @@
 </thead>
 <tbody>
 <tr>
-<td><code>.spec.serviceSpec.syncMode</code></td>
-<td><code>Continuous</code></td>
-<td>Specifies how beach-head services are synced i the target cluster (default:<code>Continuous</code>)</td>
+<td><code>.spec.serviceSpec.provider.name</code></td>
+<td><code>kcm-projectsveltos</code></td>
+<td>Name of the StateManagementProvider to use for service deployment</td>
 </tr>
 <tr>
-<td><code>.spec.serviceSpec.DriftIgnore</code></td>
-<td></td>
-<td>specifies resources to ignore for drift detection</td>
+<td><code>.spec.serviceSpec.provider.config</code></td>
+<td>See <a href="#provider-configuration">Provider Configuration</a> below</td>
+<td>Provider-specific configuration</td>
 </tr>
 <tr>
-<td><code>.spec.serviceSpec.DriftExclusions</code></td>
-<td></td>
-<td>specifies specific configurations of resources to ignore for drift detection</td>
-</tr>
-<tr>
-<td><code>.spec.serviceSpec.priority</code></td>
-<td><code>100</code></td>
-<td>Sets the priority for the beach-head services defined in this spec (default: <code>100</code>)</td>
-</tr>
-<tr>
-<td><code>.spec.serviceSpec.stopOnConflict</code></td>
-<td><code>false</code></td>
-<td>Stops deployment of beach-head services upon first encounter of a conflict (default: <code>false</code>)</td>
+<td><code>.spec.serviceSpec.provider.selfManagement</code></td>
+<td><code>true</code></td>
+<td>Deploy services to the management cluster itself (for MultiClusterService only)</td>
 </tr>
 <tr>
 <td><code>.spec.serviceSpec.services[].template</code></td>
 <td><code>kyverno-3-2-6</code></td>
 <td>Name of the <code>ServiceTemplate</code> object located in the same namespace</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.services[].templateChain</code></td>
+<td><code>kyverno-chain</code></td>
+<td>Name of the <code>ServiceTemplateChain</code> for upgrade/rollback paths (optional)</td>
 </tr>
 <tr>
 <td><code>.spec.serviceSpec.services[].name</code></td>
@@ -4651,17 +4838,257 @@
 <tr>
 <td><code>.spec.serviceSpec.services[].values</code></td>
 <td><code>replicas: 3</code></td>
-<td>Helm values to be used with the template while deployed the beach-head services</td>
+<td>Helm values to be used with the template while deploying the beach-head services</td>
 </tr>
 <tr>
-<td><code>.spec.serviceSpec.services[].valuesFrom</code></td>
-<td>``</td>
-<td>Can reference a ConfigMap or Secret containing helm values</td>
+<td><code>.spec.serviceSpec.services[].valuesFrom[]</code></td>
+<td>See <a href="#valuesfrom-structure">ValuesFrom Structure</a> below</td>
+<td>Array of references to ConfigMaps or Secrets containing helm values</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.services[].helmOptions</code></td>
+<td>See <a href="#helmoptions-structure">HelmOptions Structure</a> below</td>
+<td>Per-service Helm options that override template-level helmOptions</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.services[].dependsOn[]</code></td>
+<td>See <a href="#service-dependencies">Service Dependencies</a> below</td>
+<td>Array of service dependencies (service won't deploy until dependencies are ready)</td>
 </tr>
 <tr>
 <td><code>.spec.serviceSpec.services[].disable</code></td>
 <td><code>false</code></td>
-<td>Disable handling of this beach-head service (default: <code>false</code>)</td>
+<td>Boolean flag to disable handling of this service - service won't be deployed (default: <code>false</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="valuesfrom-structure">ValuesFrom Structure<a class="headerlink" href="#valuesfrom-structure" title="Permanent link">#</a></h3>
+<p>The <code>valuesFrom</code> field allows referencing ConfigMaps or Secrets that contain Helm values:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">valuesFrom</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span><span class="w">  </span><span class="c1"># or Secret</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-config</span>
+</code></pre></div>
+<p><strong>Fields:</strong>
+- <code>kind</code> (required): Either <code>ConfigMap</code> or <code>Secret</code>
+- <code>name</code> (required): Name of the ConfigMap or Secret</p>
+<p><strong>Merge Behavior:</strong>
+- Multiple <code>valuesFrom</code> entries are merged in order
+- Values from <code>.spec.serviceSpec.services[].values</code> are merged last (highest priority)</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-11-3</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx</span>
+<span class="w">    </span><span class="nt">valuesFrom</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base-config</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensitive-config</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no"># These values override anything from valuesFrom</span>
+<span class="w">      </span><span class="no">controller:</span>
+<span class="w">        </span><span class="no">replicaCount: 3</span>
+</code></pre></div></p>
+<h3 id="helmoptions-structure">HelmOptions Structure<a class="headerlink" href="#helmoptions-structure" title="Permanent link">#</a></h3>
+<p>Per-service Helm options that override template-level <code>helmOptions</code>. See <a href="../../../admin/ksm/ksm-service-templates/#spechelmOptions">ServiceTemplate Helm Options</a> for the complete list of available options.</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager-1-18-2</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">    </span><span class="nt">helmOptions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">waitForJobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15m</span>
+<span class="w">      </span><span class="nt">createNamespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></p>
+<h3 id="service-dependencies">Service Dependencies<a class="headerlink" href="#service-dependencies" title="Permanent link">#</a></h3>
+<p>The <code>dependsOn</code> field defines dependencies between services. A service will not be deployed until all its dependencies are successfully deployed.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">dependsOn</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+</code></pre></div>
+<p><strong>Fields:</strong>
+- <code>name</code> (required): Name of the dependent service
+- <code>namespace</code> (required): Namespace of the dependent service</p>
+<p><strong>Behavior:</strong>
+- Dependencies are evaluated per cluster (for MultiClusterService, each matching cluster is evaluated independently)
+- If a service already exists from another source (e.g., different MultiClusterService), it will be processed depending on defined priority
+- Circular dependencies are not allowed and will cause validation errors</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager-1-18-2</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-nginx-4-13-0</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">    </span><span class="nt">dependsOn</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">        </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-1-0-0</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">    </span><span class="nt">dependsOn</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">        </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+<span class="w">        </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cert-manager</span>
+</code></pre></div></p>
+<h3 id="provider-configuration">Provider Configuration<a class="headerlink" href="#provider-configuration" title="Permanent link">#</a></h3>
+<p>The <code>.spec.serviceSpec.provider.config</code> field accepts provider-specific configuration as JSON. For the built-in <code>kcm-projectsveltos</code> provider, the following options are available:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>syncMode</code></td>
+<td>string</td>
+<td><code>Continuous</code></td>
+<td>How services are synced: <code>OneTime</code>, <code>Continuous</code>, <code>ContinuousWithDriftDetection</code>, <code>DryRun</code></td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>int32</td>
+<td><code>100</code></td>
+<td>Priority for conflict resolution (higher number = higher priority)</td>
+</tr>
+<tr>
+<td><code>stopOnConflict</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Stop deployment if a conflict is encountered</td>
+</tr>
+<tr>
+<td><code>continueOnError</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Continue deploying other services if one fails</td>
+</tr>
+<tr>
+<td><code>reload</code></td>
+<td>bool</td>
+<td><code>false</code></td>
+<td>Restart deployments when mounted ConfigMap/Secret changes</td>
+</tr>
+<tr>
+<td><code>driftIgnore</code></td>
+<td>array</td>
+<td><code>[]</code></td>
+<td>Resources to ignore for drift detection (Sveltos PatchSelector format)</td>
+</tr>
+<tr>
+<td><code>driftExclusions</code></td>
+<td>array</td>
+<td><code>[]</code></td>
+<td>Specific field paths to ignore for drift (JSON6902 format)</td>
+</tr>
+<tr>
+<td><code>templateResourceRefs</code></td>
+<td>array</td>
+<td><code>[]</code></td>
+<td>Resources to collect from management cluster for templating</td>
+</tr>
+<tr>
+<td><code>policyRefs</code></td>
+<td>array</td>
+<td><code>[]</code></td>
+<td>ConfigMaps/Secrets/Flux Sources with Kubernetes resources</td>
+</tr>
+<tr>
+<td><code>patches</code></td>
+<td>array</td>
+<td><code>[]</code></td>
+<td>Kustomize inline patches to apply to all resources</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><span class="nt">serviceSpec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">provider</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kcm-projectsveltos</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">syncMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousWithDriftDetection</span>
+<span class="w">      </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
+<span class="w">      </span><span class="nt">stopOnConflict</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">continueOnError</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">reload</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">driftIgnore</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps</span>
+<span class="w">          </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">      </span><span class="nt">patches</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">target</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="w">          </span><span class="nt">patch</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">            </span><span class="no">- op: add</span>
+<span class="w">              </span><span class="no">path: /metadata/labels/environment</span>
+<span class="w">              </span><span class="no">value: production</span>
+<span class="w">  </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-1-0-0</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+</code></pre></div></p>
+<h2 id="deprecated-parameters-legacy">Deprecated Parameters (Legacy)<a class="headerlink" href="#deprecated-parameters-legacy" title="Permanent link">#</a></h2>
+<p>The following parameters are still supported but deprecated. Use <code>.spec.serviceSpec.provider.config</code> instead:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Replacement</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.spec.serviceSpec.syncMode</code></td>
+<td><code>.spec.serviceSpec.provider.config.syncMode</code></td>
+<td>Specifies how services are synced in the target cluster (default:<code>Continuous</code>)</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.driftIgnore</code></td>
+<td><code>.spec.serviceSpec.provider.config.driftIgnore</code></td>
+<td>Specifies resources to ignore for drift detection</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.driftExclusions</code></td>
+<td><code>.spec.serviceSpec.provider.config.driftExclusions</code></td>
+<td>Specifies specific configurations of resources to ignore for drift detection</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.priority</code></td>
+<td><code>.spec.serviceSpec.provider.config.priority</code></td>
+<td>Sets the priority for services defined in this spec (default: <code>100</code>)</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.stopOnConflict</code></td>
+<td><code>.spec.serviceSpec.provider.config.stopOnConflict</code></td>
+<td>Stops deployment upon first conflict (default: <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.reload</code></td>
+<td><code>.spec.serviceSpec.provider.config.reload</code></td>
+<td>Auto-restart on ConfigMap/Secret changes (default: <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.continueOnError</code></td>
+<td><code>.spec.serviceSpec.provider.config.continueOnError</code></td>
+<td>Continue deployment on errors (default: <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.templateResourceRefs</code></td>
+<td><code>.spec.serviceSpec.provider.config.templateResourceRefs</code></td>
+<td>Resources to collect for templating</td>
+</tr>
+<tr>
+<td><code>.spec.serviceSpec.policyRefs</code></td>
+<td><code>.spec.serviceSpec.provider.config.policyRefs</code></td>
+<td>ConfigMaps/Secrets/Flux Sources with resources</td>
 </tr>
 </tbody>
 </table>
