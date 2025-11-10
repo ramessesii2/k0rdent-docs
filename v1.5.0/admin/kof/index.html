@@ -4658,6 +4658,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kof-architecture-places-collectors-everywhere-and-lets-you-choose-where-to-store-and-aggregate" class="md-nav__link">
+    <span class="md-ellipsis">
+      KOF architecture places collectors everywhere and lets you choose where to store and aggregate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      KOF can be extended with your own dashboards, pipelines, and destinations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#managing-kof-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Managing KOF as Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diy-stack-vs-kof" class="md-nav__link">
+    <span class="md-ellipsis">
+      DIY Stack vs. KOF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guides
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4757,7 +4817,7 @@
 <li><strong>Leadership</strong>: Confidence that teams are in control of performance <em>and</em> costs.</li>
 </ul>
 <p>In a single day, KOF turned a vague cost spike into a resolved issue, with every team playing their part in one unified system.</p>
-<h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h1>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">#</a></h2>
 <p>KOF lets you get started with some quick wins. For example, you can easily:</p>
 <ul>
 <li>Spin up a single cluster and access Grafana dashboards in under 10 minutes.</li>
@@ -4765,7 +4825,7 @@
 <li>Configure alerts for both performance and budget thresholds.</li>
 <li>Start retaining logs and metrics for compliance right out of the box.</li>
 </ul>
-<h2 id="kof-architecture-places-collectors-everywhere-and-lets-you-choose-where-to-store-and-aggregate">KOF architecture places collectors everywhere and lets you choose where to store and aggregate<a class="headerlink" href="#kof-architecture-places-collectors-everywhere-and-lets-you-choose-where-to-store-and-aggregate" title="Permanent link">#</a></h2>
+<h3 id="kof-architecture-places-collectors-everywhere-and-lets-you-choose-where-to-store-and-aggregate">KOF architecture places collectors everywhere and lets you choose where to store and aggregate<a class="headerlink" href="#kof-architecture-places-collectors-everywhere-and-lets-you-choose-where-to-store-and-aggregate" title="Permanent link">#</a></h3>
 <p>k0rdent defines a management cluster and many child clusters. KOF follows this and adds an optional regional role for storage and aggregation. Placement options are documented and configurable:</p>
 <ul>
 <li>
@@ -4783,7 +4843,7 @@
   See: <a href="https://docs.k0rdent.io/latest/admin/kof/kof-storing/">Storing KOF data</a>.</li>
 </ul>
 <p>Data flows from child clusters into the chosen storage or aggregation point. On the management cluster, promxy and Grafana provide the consolidated UI.</p>
-<h2 id="kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations">KOF can be extended with your own dashboards, pipelines, and destinations<a class="headerlink" href="#kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations" title="Permanent link">#</a></h2>
+<h3 id="kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations">KOF can be extended with your own dashboards, pipelines, and destinations<a class="headerlink" href="#kof-can-be-extended-with-your-own-dashboards-pipelines-and-destinations" title="Permanent link">#</a></h3>
 <p>KOF is fully functional out of the box, but you can also add additional capabilities through extensions.</p>
 <ul>
 <li><strong>Dashboards and alerts.</strong> Add Grafana dashboards and VMRules in Git; k0rdent <code>MultiClusterService</code> distributes them consistently.</li>
@@ -4791,7 +4851,7 @@
 <li><strong>External destinations.</strong> Route specific streams to third-party systems (recipes are included for CloudWatch and others).</li>
 </ul>
 <p>All extensions are managed through the same GitOps lifecycle as the rest of the platform.</p>
-<h2 id="managing-kof-as-code">Managing KOF as Code<a class="headerlink" href="#managing-kof-as-code" title="Permanent link">#</a></h2>
+<h3 id="managing-kof-as-code">Managing KOF as Code<a class="headerlink" href="#managing-kof-as-code" title="Permanent link">#</a></h3>
 <p>We recommend keeping a dedicated Git repository for your KOF deployment, separate from the k0rdent repo itself and separate from application workload repos.</p>
 <p>That repository should contain the Helm chart directories such as:</p>
 <div class="highlight"><pre><span></span><code>charts/
@@ -4804,7 +4864,7 @@
 - Use CI/CD pipelines to run <code>helm upgrade --install</code> against your management and regional clusters.
 - Manage dashboards, retention policies, and observability settings as code for consistency across environments.</p>
 <p>Other sections in this documentation, such as <a href="kof-using/">Dashboard Lifecycle</a> and <a href="kof-retention/">Retention</a> assume you have such a repo and a CI/CD pipeline in place.</p>
-<h2 id="diy-stack-vs-kof">DIY Stack vs. KOF<a class="headerlink" href="#diy-stack-vs-kof" title="Permanent link">#</a></h2>
+<h3 id="diy-stack-vs-kof">DIY Stack vs. KOF<a class="headerlink" href="#diy-stack-vs-kof" title="Permanent link">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -4866,7 +4926,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="guides">Guides<a class="headerlink" href="#guides" title="Permanent link">#</a></h2>
+<h3 id="guides">Guides<a class="headerlink" href="#guides" title="Permanent link">#</a></h3>
 <p>Get started with the basic documentation:</p>
 <ul>
 <li><a href="kof-architecture/">Architecture</a></li>
