@@ -1,9 +1,9 @@
-name: Deploy Docs Consumer (Runs manually or on cron)
+name: Deploy Docs Consumer
 
 on:
   schedule:
     - cron: '*/15 * * * *'  # every 15 minutes
-  workflow_dispatch:       # manual trigger via GitHub UI
+  workflow_dispatch:        # manual trigger via GitHub UI
 
 permissions:
   contents: write
@@ -30,6 +30,14 @@ jobs:
         run: |
           echo "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com" > ~/.git-credentials
           git config --global credential.helper store
+
+      - name: Set up Kind
+        uses: helm/kind-action@v1.10.0
+        with:
+          install_only: true
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Grab queue, clear, and process all branches
         run: |
@@ -67,13 +75,172 @@ jobs:
           cd "$TMPDIR"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
+          # FUNCTION: Map docs branch to kcm ref (tag or branch)
+          get_kcm_ref() {
+            local docs_branch="$1"
+            if [[ "$docs_branch" == "main" ]]; then
+              echo "main"
+            elif [[ "$docs_branch" =~ ^release-v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+              # Try tag first (e.g., v1.5.0), fallback to branch
+              echo "v${BASH_REMATCH[1]}"
+            else
+              echo "main"
+            fi
+          }
+
+          # FUNCTION: Extract version string for file naming
+          get_version_string() {
+            local docs_branch="$1"
+            if [[ "$docs_branch" == "main" ]]; then
+              echo "next"
+            elif [[ "$docs_branch" =~ ^release-v([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+              echo "${BASH_REMATCH[1]}"
+            else
+              echo "unknown"
+            fi
+          }
+
+          # FUNCTION: Generate OpenAPI spec from kcm CRDs
+          generate_openapi_spec() {
+            local kcm_ref="$1"
+            local version_string="$2"
+            local output_file="docs/openapi/k0rdent-api-${version_string}.json"
+            local cluster_name="swagger-gen-${version_string//\./-}"
+
+            echo "Generating OpenAPI spec for version: ${version_string} from kcm ref: ${kcm_ref}... "
+
+            # Clone or update kcm repo
+            if [ -d "/tmp/kcm-repo" ]; then
+              echo "Updating existing kcm repo..."
+              cd /tmp/kcm-repo
+              git fetch --all --tags
+              cd - > /dev/null
+            else
+              echo "Cloning kcm repo..."
+              git clone https://github.com/k0rdent/kcm /tmp/kcm-repo
+            fi
+
+            # Checkout the appropriate ref
+            cd /tmp/kcm-repo
+            if git rev-parse "refs/tags/${kcm_ref}" >/dev/null 2>&1; then
+              echo "Checking out tag: ${kcm_ref}"
+              git checkout "tags/${kcm_ref}" --force
+            elif git rev-parse "refs/remotes/origin/${kcm_ref}" >/dev/null 2>&1; then
+              echo "Checking out branch: ${kcm_ref}"
+              git checkout "${kcm_ref}" --force
+              git pull origin "${kcm_ref}" || true
+            else
+              echo "WARNING: ref ${kcm_ref} not found, using main"
+              git checkout main --force
+              git pull origin main || true
+            fi
+            cd - > /dev/null
+
+            echo "Creating Kind cluster: ${cluster_name}..."
+            kind delete cluster --name "${cluster_name}" 2>/dev/null || true
+            kind create cluster --name "${cluster_name}" --wait 60s
+
+            echo "Installing CRDs from kcm ref: ${kcm_ref}..."
+            kubectl apply -f /tmp/kcm-repo/templates/provider/kcm/templates/crds/ --context "kind-${cluster_name}"
+
+            echo "Waiting for CRDs to be established..."
+            local crds
+            crds=$(kubectl get crd -o name --context "kind-${cluster_name}" | grep k0rdent.mirantis.com || true)
+            if [ -n "$crds" ]; then
+              echo "$crds" | xargs -r -n1 -I{} kubectl wait --for=condition=Established --timeout=180s {} --context "kind-${cluster_name}"
+            fi
+
+            # Create output directory
+            mkdir -p "$(dirname "$output_file")"
+
+            echo "Discovering available k0rdent API versions..."
+            local api_versions
+            api_versions=$(kubectl api-versions --context "kind-${cluster_name}" | grep "^k0rdent.mirantis.com/" | sort || true)
+
+            if [ -z "$api_versions" ]; then
+              echo "ERROR: No k0rdent.mirantis.com API versions found"
+              kind delete cluster --name "${cluster_name}" || true
+              return 1
+            fi
+
+            echo "Found API versions:"
+            echo "$api_versions"
+
+            # Extract OpenAPI spec for each API group/version
+            local success=false
+            local temp_dir="${output_file%.json}_parts"
+            mkdir -p "$temp_dir"
+            local extracted_files=()
+
+            for api_version in $api_versions; do
+              # Create safe filename: k0rdent.mirantis.com/v1beta1 -> k0rdent-v1beta1
+              local safe_name
+              safe_name=$(echo "$api_version" | sed 's|\.mirantis\.com||g' | tr '/' '-')
+              local version_file="${temp_dir}/${safe_name}.json"
+              echo "Extracting OpenAPI spec for ${api_version}..."
+
+              for attempt in $(seq 1 10); do
+                if kubectl get --raw "/openapi/v3/apis/${api_version}" --context "kind-${cluster_name}" > "${version_file}" 2>/dev/null; then
+                  if jq empty "${version_file}" 2>/dev/null; then
+                    echo "${safe_name} extracted successfully"
+                    extracted_files+=("${version_file}")
+                    break
+                  fi
+                fi
+                sleep 3
+              done
+            done
+
+            # Merge all extracted specs into one combined file
+            if [ ${#extracted_files[@]} -gt 0 ]; then
+              echo "Merging ${#extracted_files[@]} OpenAPI specs..."
+
+              # Use first file as base, merge others into it
+              local first_file="${extracted_files[0]}"
+
+              # Update info in the first file
+              jq --arg ver "${version_string}" '.info.title = "k0rdent APIs" | .info.version = $ver | .info.description = "OpenAPI specification for k0rdent APIs (k0rdent.mirantis.com)"' \
+                "${first_file}" > "${output_file}"
+
+              # Merge paths and schemas from remaining files
+              for spec_file in "${extracted_files[@]:1}"; do
+                echo "  Merging: $(basename "$spec_file")"
+                local temp_merged="${output_file}.tmp"
+                jq -s '
+                  .[0].paths = (.[0].paths + .[1].paths) |
+                  .[0].components.schemas = (.[0].components.schemas + .[1].components.schemas) |
+                  .[0]
+                ' "${output_file}" "${spec_file}" > "${temp_merged}" 2>/dev/null && mv "${temp_merged}" "${output_file}"
+              done
+
+              success=true
+              echo "Merged OpenAPI spec created: ${output_file}"
+            fi
+
+            # Cleanup temp files
+            rm -rf "$temp_dir"
+
+            echo "Cleaning up Kind cluster..."
+            kind delete cluster --name "${cluster_name}" || true
+
+            if [ "$success" = true ]; then
+              echo "OpenAPI spec generated: ${output_file}"
+              ls -lh "${output_file}"
+              return 0
+            else
+              echo "ERROR: Failed to generate OpenAPI spec"
+              return 1
+            fi
+          }
+
+          # MAIN LOOP: Process each branch in the queue
           for BRANCH in "${QUEUE[@]}"; do
             if ! echo "$BRANCH" | grep -Eq '^main$|^release-v[0-9]+(\.[0-9]+)*$'; then
               echo "Skipping invalid branch: $BRANCH"
               continue
             fi
 
-            echo "=== Processing $BRANCH ==="
+            echo "Processing $BRANCH..."
 
             if ! git checkout "$BRANCH"; then
               echo "ERROR: Branch $BRANCH doesn't exist, skipping"
@@ -89,6 +256,23 @@ jobs:
               pip install -r requirements.txt
             else
               echo "No requirements.txt in $BRANCH — skipping pip install"
+            fi
+
+            # Determine kcm ref and version string
+            KCM_REF=$(get_kcm_ref "$BRANCH")
+            VERSION_STRING=$(get_version_string "$BRANCH")
+
+            echo "Docs branch: $BRANCH"
+            echo "KCM ref: $KCM_REF"
+            echo "Version string: $VERSION_STRING"
+
+            # Generate OpenAPI spec
+            generate_openapi_spec "$KCM_REF" "$VERSION_STRING" || echo "WARNING: OpenAPI generation failed, continuing with existing spec if available..."
+
+            # Update the api-specification index.md to use the correct spec file
+            if [ -f "docs/api-specification/index.md" ]; then
+              sed -i "s|k0rdent-api-[0-9a-z.-]*\.json|k0rdent-api-${VERSION_STRING}.json|g" docs/api-specification/index.md
+              echo "Updated api-specification/index.md to use k0rdent-api-${VERSION_STRING}.json"
             fi
 
             echo "Deploying docs for branch: $BRANCH"
